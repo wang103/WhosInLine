@@ -1,8 +1,14 @@
 package edu.uiuc.whosinline;
 
+import edu.uiuc.whosinline.fragments.FavoriteFragment;
+import edu.uiuc.whosinline.fragments.NearbyFragment;
+import edu.uiuc.whosinline.fragments.RecentFragment;
+import edu.uiuc.whosinline.HomeTabsListener;
+
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
@@ -10,10 +16,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// get rid of the icon and app title in the action bar
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayShowHomeEnabled(false);
-		actionBar.setDisplayShowTitleEnabled(false);
+		// set up the action bar with tabs
+		setUpActionBar();
 		// set the view for this activity
 		setContentView(R.layout.activity_main);
 	}
@@ -23,6 +27,35 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	// setUpActionBar()
+	// Description: sets up the action bar for this activity by creating three tabs
+	// Parameters: none
+	// Returns: nothing
+	private void setUpActionBar(){
+		// get rid of the icon and app title in the action bar
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(false);
+		// set up tabs
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		// initiate the three tabs
+		ActionBar.Tab nearbyTab = actionBar.newTab().setText("Nearby");
+		ActionBar.Tab recentTab = actionBar.newTab().setText("Recent");
+		ActionBar.Tab favoriteTab = actionBar.newTab().setText("Favorite");
+		// create fragments to display each tab
+		Fragment nearbyFragment = new NearbyFragment();
+		Fragment recentFragment = new RecentFragment();
+		Fragment favoriteFragment = new FavoriteFragment();
+		// set the tab listeners to listen for clicks
+		nearbyTab.setTabListener(new HomeTabsListener(nearbyFragment));
+		recentTab.setTabListener(new HomeTabsListener(recentFragment));
+		favoriteTab.setTabListener(new HomeTabsListener(favoriteFragment));
+		// add tabs to the action bar
+		actionBar.addTab(nearbyTab);
+		actionBar.addTab(recentTab);
+		actionBar.addTab(favoriteTab);	
 	}
 
 }
