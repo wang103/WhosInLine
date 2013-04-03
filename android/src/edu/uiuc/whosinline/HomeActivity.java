@@ -3,7 +3,7 @@ package edu.uiuc.whosinline;
 import edu.uiuc.whosinline.fragments.FavoriteFragment;
 import edu.uiuc.whosinline.fragments.NearbyFragment;
 import edu.uiuc.whosinline.fragments.RecentFragment;
-import edu.uiuc.whosinline.HomeTabsListener;
+import edu.uiuc.whosinline.listeners.HomeTabsListener;
 
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -11,7 +11,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.view.Menu;
 
-public class MainActivity extends Activity {
+public class HomeActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

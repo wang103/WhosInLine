@@ -1,4 +1,4 @@
-package edu.uiuc.whosinline;
+package edu.uiuc.whosinline.listeners;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
