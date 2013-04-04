@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="text_nearby_frag">This is nearby fragment.</string>
+    <string name="text_recent_frag">This is recent fragment.</string>
+    <string name="text_favorite_frag">This is favorite fragment.</string>
+        
+</resources>
