@@ -31,9 +31,8 @@ public class HomeTabsListener implements ActionBar.TabListener {
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		
 		// Replace whatever is in the fragment_container view with this
-		// fragment, and add the transaction to the back stack.
+		// fragment.
 		transaction.replace(fragmentContainerId, fragment);
-		transaction.addToBackStack(null);
 		
 		// Commit the transaction.
 		transaction.commit();
