@@ -7,12 +7,12 @@ import android.util.Log;
 
 public abstract class SQLiteHelperBase extends SQLiteOpenHelper {
 
-	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_VENUE_NAME = "name";
-	private static final String COLUMN_VENUE_IMAGE_PATH = "image_path";
-	private static final String COLUMN_VENUE_TYPE = "type";
-	private static final String COLUMN_VENUE_RATING = "rating";
-	private static final String COLUMN_VENUE_WAIT_MIN = "wait_minutes";
+	public static final String COLUMN_ID = "_id";
+	public static final String COLUMN_VENUE_NAME = "name";
+	public static final String COLUMN_VENUE_IMAGE_PATH = "image_path";
+	public static final String COLUMN_VENUE_TYPE = "type";
+	public static final String COLUMN_VENUE_RATING = "rating";
+	public static final String COLUMN_VENUE_WAIT_MIN = "wait_minutes";
 
 	private static final String DATABASE_NAME = "whosinline.db";
 	private static final int DATABASE_VERSION = 1;

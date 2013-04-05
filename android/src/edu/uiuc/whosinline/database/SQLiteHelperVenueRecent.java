@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class SQLiteHelperVenueRecent extends SQLiteHelperBase {
 
-	private static final String TABLE_NAME = "venue_recent";
+	public static final String TABLE_NAME = "venue_recent";
 
 	public SQLiteHelperVenueRecent(Context context) {
 		super(context);

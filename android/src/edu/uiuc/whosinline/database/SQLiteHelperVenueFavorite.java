@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class SQLiteHelperVenueFavorite extends SQLiteHelperBase {
 
-	private static final String TABLE_NAME = "venue_favorite";
+	public static final String TABLE_NAME = "venue_favorite";
 
 	public SQLiteHelperVenueFavorite(Context context) {
 		super(context);
