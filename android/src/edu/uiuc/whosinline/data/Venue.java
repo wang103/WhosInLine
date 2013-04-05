@@ -5,17 +5,21 @@ public class Venue {
 	private int id;
 	private String name;
 	private String imagePath;
+	private int imageResource;
 	private String type;
 	private int rating;
+	private float distance;
 	private int waitMinutes;
 	
-	public Venue(int id, String name, String imagePath, String type,
-			int rating, int waitMinutes) {
+	public Venue(int id, String name, String imagePath, int imageResource,
+			String type, int rating, float distance, int waitMinutes) {
 		this.id = id;
 		this.name = name;
 		this.imagePath = imagePath;
+		this.imageResource = imageResource;
 		this.type = type;
 		this.rating = rating;
+		this.distance = distance;
 		this.waitMinutes = waitMinutes;
 	}
 	
@@ -43,6 +47,14 @@ public class Venue {
 		this.imagePath = imagePath;
 	}
 	
+	public int getImageResource() {
+		return imageResource;
+	}
+	
+	public void setImageResource(int imageResource) {
+		this.imageResource = imageResource;
+	}
+	
 	public String getType() {
 		return type;
 	}
@@ -57,6 +69,14 @@ public class Venue {
 	
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+	
+	public float getDistance() {
+		return distance;
+	}
+	
+	public void setDistance(float distance) {
+		this.distance = distance;
 	}
 	
 	public int getWaitMinutes() {
