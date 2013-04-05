@@ -1,13 +1,13 @@
 package edu.uiuc.whosinline.fragments;
 
 import edu.uiuc.whosinline.R;
-import android.app.Fragment;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class NearbyFragment extends Fragment {
+public class NearbyFragment extends ListFragment {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

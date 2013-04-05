@@ -41,6 +41,7 @@ public class HomeActivity extends Activity {
 	// Parameters: none
 	// Returns: nothing
 	private void setUpActionBar(){
+		
 		// get rid of the icon and app title in the action bar
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowHomeEnabled(false);

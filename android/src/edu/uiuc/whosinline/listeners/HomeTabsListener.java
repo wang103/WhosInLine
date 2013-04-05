@@ -21,25 +21,25 @@ public class HomeTabsListener implements ActionBar.TabListener {
 	}
 
 	@Override
-	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		// Do nothing.
 	}
 
 	@Override
-	public void onTabSelected(Tab arg0, FragmentTransaction arg1) {
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// Create new transaction.
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		
 		// Replace whatever is in the fragment_container view with this
 		// fragment.
 		transaction.replace(fragmentContainerId, fragment);
-		
+
 		// Commit the transaction.
 		transaction.commit();
 	}
 
 	@Override
-	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 		// Do nothing.
 	}
 }

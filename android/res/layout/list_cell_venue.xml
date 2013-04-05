@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+<TextView
+	android:id="@+id/cell_venus_name"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:gravity="left"
+	android:layout_alignParentTop="true"
+	android:layout_alignParentLeft="true" />
+    
+<ImageView
+	android:id="@+id/cell_venue_image"
+	android:contentDescription="@string/str_venue_image_description"
+	android:layout_width="80dp"
+	android:layout_height="80dp"
+	android:layout_alignTop="@+id/cell_venue_type"
+	android:layout_alignParentLeft="true" />
+
+<TextView
+	android:id="@+id/widget35"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_show_type"
+	android:layout_above="@+id/widget36"
+	android:layout_alignLeft="@+id/widget36" />
+
+<TextView
+	android:id="@+id/widget36"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_show_rating"
+	android:layout_below="@+id/widget40"
+	android:layout_toRightOf="@+id/cell_venus_name" />
+
+<TextView
+	android:id="@+id/cell_venue_type"
+	android:layout_width="100dp"
+	android:layout_height="wrap_content"
+	android:layout_alignTop="@+id/widget40"
+	android:layout_alignLeft="@+id/cell_rating_image" />
+
+<ImageView
+	android:id="@+id/cell_rating_image"
+	android:contentDescription="@string/str_rating_image_description"
+	android:layout_width="100dp"
+	android:layout_height="20dp"
+	android:layout_alignTop="@+id/widget36"
+	android:layout_toRightOf="@+id/widget36" />
+
+<TextView
+	android:id="@+id/widget40"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_show_wait"
+	android:layout_below="@+id/cell_venus_name"
+	android:layout_alignParentRight="true" />
+
+<TextView
+	android:id="@+id/cell_wait_minutes"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:gravity="left"
+	android:layout_alignBottom="@+id/cell_rating_image"
+	android:layout_alignLeft="@+id/widget40" />
+
+<TextView
+	android:id="@+id/widget43"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_show_wait_unit"
+	android:layout_below="@+id/cell_rating_image"
+	android:layout_alignLeft="@+id/cell_wait_minutes" />
+
+</RelativeLayout>
