@@ -12,13 +12,13 @@ import android.widget.ArrayAdapter;
 
 public class FavoriteFragment extends BaseFragment {
 	
-	final private int dbNum = 2;
+	final private int tableNum = 2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		List<Venue> venues = dbAccessObj.getAllVenues(dbNum);
+		List<Venue> venues = dbAccessObj.getAllVenues(tableNum);
 		
 		ArrayAdapter<Venue> adapter = new ArrayAdapter<Venue>(getActivity(),
 				R.layout.list_cell_venue, venues);

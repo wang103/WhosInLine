@@ -77,15 +77,22 @@ public class DatabaseAccessObj {
 		database.delete(tableName, SQLiteHelperVenues.COLUMN_ID + "=" + id, null);
 	}
 
-	public List<Venue> getAllVenues(int tableNum) {
-		List<Venue> venues = new ArrayList<Venue>();
-
+	public Cursor getCursor(int tableNum) {
 		String tableName = getTableName(tableNum);
 
 		Cursor cursor = database.query(tableName, columnNames, null, null,
 				null, null, null);
-
+		
 		cursor.moveToFirst();
+		
+		return cursor;
+	}
+	
+	public List<Venue> getAllVenues(int tableNum) {
+		List<Venue> venues = new ArrayList<Venue>();
+
+		Cursor cursor = getCursor(tableNum);
+
 		while (!cursor.isAfterLast()) {
 			Venue venue = cursorToVenue(cursor);
 			venues.add(venue);

@@ -1,6 +1,7 @@
 package edu.uiuc.whosinline.data;
 
 public class Venue {
+	
 	private int id;
 	private String name;
 	private String imagePath;

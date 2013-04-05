@@ -5,7 +5,7 @@
 	<string name="str_rating_image_description">Image of the rating</string>
     <string name="str_show_type">Type:</string>
 	<string name="str_show_rating">Rating:</string>
-	<string name="str_show_wait">Wait</string>
+	<string name="str_show_wait">Wait    </string>
 	<string name="str_show_wait_unit">minutes</string>
 	
 </resources>

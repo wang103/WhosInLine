@@ -5,7 +5,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 <TextView
-	android:id="@+id/cell_venus_name"
+	android:id="@+id/cell_venue_name"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:gravity="left"
@@ -34,7 +34,7 @@
 	android:layout_height="wrap_content"
 	android:text="@string/str_show_rating"
 	android:layout_below="@+id/widget40"
-	android:layout_toRightOf="@+id/cell_venus_name" />
+	android:layout_toRightOf="@+id/cell_venue_name" />
 
 <TextView
 	android:id="@+id/cell_venue_type"
@@ -56,7 +56,7 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:text="@string/str_show_wait"
-	android:layout_below="@+id/cell_venus_name"
+	android:layout_below="@+id/cell_venue_name"
 	android:layout_alignParentRight="true" />
 
 <TextView
