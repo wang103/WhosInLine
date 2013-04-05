@@ -11,74 +11,54 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DatabaseAccessObj {
 
-	private int dbNum;
 	private SQLiteDatabase database;
+	private SQLiteHelperVenues dbHelper;
 
-	private SQLiteHelperVenueNearby dbHelperNearby;
-	private SQLiteHelperVenueRecent dbHelperRecent;
-	private SQLiteHelperVenueFavorite dbHelperFavorite;
-
-	private String[] columnNames = {SQLiteHelperBase.COLUMN_ID,
-			SQLiteHelperBase.COLUMN_VENUE_NAME,
-			SQLiteHelperBase.COLUMN_VENUE_IMAGE_PATH,
-			SQLiteHelperBase.COLUMN_VENUE_TYPE,
-			SQLiteHelperBase.COLUMN_VENUE_RATING,
-			SQLiteHelperBase.COLUMN_VENUE_WAIT_MIN};
+	private String[] columnNames = {SQLiteHelperVenues.COLUMN_ID,
+			SQLiteHelperVenues.COLUMN_VENUE_NAME,
+			SQLiteHelperVenues.COLUMN_VENUE_IMAGE_PATH,
+			SQLiteHelperVenues.COLUMN_VENUE_TYPE,
+			SQLiteHelperVenues.COLUMN_VENUE_RATING,
+			SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN};
 
 	public DatabaseAccessObj(Context context) {
-		dbNum = -1;
-		dbHelperNearby = new SQLiteHelperVenueNearby(context);
-		dbHelperRecent = new SQLiteHelperVenueRecent(context);
-		dbHelperFavorite = new SQLiteHelperVenueFavorite(context);
+		dbHelper = new SQLiteHelperVenues(context);
 	}
 
-	public void open(int dbNum) {
-		this.dbNum = dbNum;
-		if (dbNum == 0) {
-			database = dbHelperNearby.getWritableDatabase();
-		} else if (dbNum == 2) {
-			database = dbHelperRecent.getWritableDatabase();
-		} else {
-			database = dbHelperFavorite.getWritableDatabase();
-		}
+	public void open() {
+		database = dbHelper.getWritableDatabase();
 	}
 
-	public void close(int dbNum) {
-		if (dbNum == 0) {
-			dbHelperNearby.close();
-		} else if (dbNum == 2) {
-			dbHelperRecent.close();
-		} else {
-			dbHelperFavorite.close();
-		}
-		this.dbNum = -1;
+	public void close() {
+		dbHelper.close();
 	}
 
-	private String getCurrentTableName() {
-		if (this.dbNum == 0) {
-			return SQLiteHelperVenueNearby.TABLE_NAME;
-		} else if (this.dbNum == 1) {
-			return SQLiteHelperVenueRecent.TABLE_NAME;
+	private String getTableName(int tableNum) {
+		if (tableNum == 0) {
+			return SQLiteHelperVenues.TABLE_NAME_NEARBY;
+		} else if (tableNum == 1) {
+			return SQLiteHelperVenues.TABLE_NAME_RECENT;
 		}
-		return SQLiteHelperVenueFavorite.TABLE_NAME;
+		return SQLiteHelperVenues.TABLE_NAME_FAVORITE;
 	}
 
 	/**
 	 * Insert a new venue into the SQLite database.
 	 * 
+	 * @param tableNum the number representing a table.
 	 * @param venue a {@link Venue} object.
 	 */
-	public void insertVenue(Venue venue) {
+	public void insertVenue(int tableNum, Venue venue) {
 		ContentValues values = new ContentValues();
 
-		values.put(SQLiteHelperBase.COLUMN_ID, venue.getId());
-		values.put(SQLiteHelperBase.COLUMN_VENUE_NAME, venue.getName());
-		values.put(SQLiteHelperBase.COLUMN_VENUE_IMAGE_PATH, venue.getImagePath());
-		values.put(SQLiteHelperBase.COLUMN_VENUE_TYPE, venue.getType());
-		values.put(SQLiteHelperBase.COLUMN_VENUE_RATING, venue.getRating());
-		values.put(SQLiteHelperBase.COLUMN_VENUE_WAIT_MIN, venue.getWaitMinutes());
+		values.put(SQLiteHelperVenues.COLUMN_ID, venue.getId());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_NAME, venue.getName());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_IMAGE_PATH, venue.getImagePath());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_TYPE, venue.getType());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_RATING, venue.getRating());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN, venue.getWaitMinutes());
 
-		String tableName = getCurrentTableName();
+		String tableName = getTableName(tableNum);
 
 		database.insert(tableName, null, values);
 	}
@@ -86,20 +66,21 @@ public class DatabaseAccessObj {
 	/**
 	 * Delete a venue from the SQLite database.
 	 * 
+	 * @param tableNum the number representing a table.
 	 * @param venue a {@link Venue} object.
 	 */
-	public void deleteVenue(Venue venue) {
+	public void deleteVenue(int tableNum, Venue venue) {
 		int id = venue.getId();
 
-		String tableName = getCurrentTableName();
+		String tableName = getTableName(tableNum);
 
-		database.delete(tableName, SQLiteHelperBase.COLUMN_ID + "=" + id, null);
+		database.delete(tableName, SQLiteHelperVenues.COLUMN_ID + "=" + id, null);
 	}
 
-	public List<Venue> getAllVenues() {
+	public List<Venue> getAllVenues(int tableNum) {
 		List<Venue> venues = new ArrayList<Venue>();
 
-		String tableName = getCurrentTableName();
+		String tableName = getTableName(tableNum);
 
 		Cursor cursor = database.query(tableName, columnNames, null, null,
 				null, null, null);

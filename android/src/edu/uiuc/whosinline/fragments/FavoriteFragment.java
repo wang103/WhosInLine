@@ -1,17 +1,28 @@
 package edu.uiuc.whosinline.fragments;
 
+import java.util.List;
+
 import edu.uiuc.whosinline.R;
-import android.app.Fragment;
+import edu.uiuc.whosinline.data.Venue;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends BaseFragment {
+	
+	final private int dbNum = 2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		List<Venue> venues = dbAccessObj.getAllVenues(dbNum);
+		
+		ArrayAdapter<Venue> adapter = new ArrayAdapter<Venue>(getActivity(),
+				R.layout.list_cell_venue, venues);
+		setListAdapter(adapter);
 	}
 	
 	@Override
@@ -20,10 +31,5 @@ public class FavoriteFragment extends Fragment {
 		
 		// Inflate the layout for this fragment.
 		return inflater.inflate(R.layout.fragment_favorite, container, false);
-	}
-	
-	@Override
-	public void onPause() {
-		super.onPause();
 	}
 }
