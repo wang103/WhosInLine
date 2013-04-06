@@ -34,6 +34,11 @@ public class DatabaseAccessObj {
 	public void close() {
 		dbHelper.close();
 	}
+	
+	public Venue getVenue(int id)
+	{
+		return null;
+	}
 
 	private String getTableName(int tableNum) {
 		if (tableNum == 0) {

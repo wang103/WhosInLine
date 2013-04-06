@@ -4,5 +4,7 @@
     <string name="app_name">Who\'s In Line?</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="title_activity_venue">VenueActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
