@@ -1,13 +1,14 @@
 package edu.uiuc.whosinline.fragments;
 
+import com.tjerkw.slideexpandable.library.SlideExpandableListAdapter;
+
 import edu.uiuc.whosinline.database.DatabaseAccessObj;
 import android.app.ListFragment;
 import android.os.Bundle;
-import android.widget.SimpleCursorAdapter;
 
 public abstract class BaseFragment extends ListFragment {
 	
-	protected SimpleCursorAdapter adapter;
+	protected SlideExpandableListAdapter adapter;
 	protected DatabaseAccessObj dbAccessObj;
 
 	@Override

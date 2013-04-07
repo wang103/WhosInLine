@@ -67,7 +67,6 @@ public class NearbyFragment extends BaseFragment {
 		}
 		insertTestData();
 		
-		
 		// Fields from the database.
 		String[] from = new String[] {SQLiteHelperVenues.COLUMN_VENUE_NAME,
 				SQLiteHelperVenues.COLUMN_VENUE_IMAGE_RESOURCE,
@@ -81,13 +80,13 @@ public class NearbyFragment extends BaseFragment {
 				R.id.cell_venue_type, R.id.cell_rating_image,
 				R.id.cell_distance, R.id.cell_wait_minutes};
 		
-		adapter = new SimpleCursorAdapter(getActivity(),
+		SimpleCursorAdapter tempAdapter = new SimpleCursorAdapter(getActivity(),
 				R.layout.list_cell_venue, dbAccessObj.getCursor(tableNum),
 				from, to, 0);
 
-		SlideExpandableListAdapter ad = new SlideExpandableListAdapter(adapter,
-				R.id.cell_id, R.id.expandable);
+		adapter = new SlideExpandableListAdapter(tempAdapter, R.id.cell_id,
+				R.id.expandable);
 		
-		setListAdapter(ad);
+		setListAdapter(adapter);
 	}
 }
