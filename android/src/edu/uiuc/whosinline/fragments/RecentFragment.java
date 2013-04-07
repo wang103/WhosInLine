@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 
 public class RecentFragment extends BaseFragment {
 	
-	final private int tableNum = 1;
+	private int tableNum = 1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

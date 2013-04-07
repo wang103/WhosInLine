@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 
 public class FavoriteFragment extends BaseFragment {
 	
-	final private int tableNum = 2;
+	private int tableNum = 2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -16,7 +16,7 @@ public abstract class BaseFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 		
 		dbAccessObj = new DatabaseAccessObj(getActivity());
-		dbAccessObj.open();
+		dbAccessObj.open();		
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ import edu.uiuc.whosinline.database.SQLiteHelperVenues;
 
 public class NearbyFragment extends BaseFragment {
 	
-	final private int tableNum = 0;
+	private int tableNum = 0;
 	
 	private void insertTestData() {
 		Venue venue;

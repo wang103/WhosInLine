@@ -11,6 +11,7 @@ import android.view.MenuItem;
 public class VenueActivity extends Activity {
 
 	private DatabaseAccessObj dbAccessObj;
+	private Venue venue;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +20,14 @@ public class VenueActivity extends Activity {
 		// Get content from intent.
 		Bundle extras = getIntent().getExtras();
 		int tableNum = extras.getInt(HomeActivity.INTENT_TABLE_NUM);
-		int venueId = extras.getInt(HomeActivity.INTENT_VENUE_ID);
+		long venueId = extras.getLong(HomeActivity.INTENT_VENUE_ID);
 		
 		// Get the database object.
 		dbAccessObj = new DatabaseAccessObj(this);
 		dbAccessObj.open();
 		
 		// Get all the info about this venue.
-		Venue venue = dbAccessObj.getVenue(tableNum, venueId);
+		venue = dbAccessObj.getVenue(tableNum, venueId);
 		
 		// Set the name of the venue as the title of the action bar.
 		setTitle(venue.getName());

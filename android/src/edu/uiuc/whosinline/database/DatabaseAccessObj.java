@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class DatabaseAccessObj {
 
@@ -44,11 +45,13 @@ public class DatabaseAccessObj {
 		return SQLiteHelperVenues.TABLE_NAME_FAVORITE;
 	}
 
-	public Venue getVenue(int tableNum, int id) {
+	public Venue getVenue(int tableNum, long id) {
 		String tableName = getTableName(tableNum);
-		Cursor cursor = database.rawQuery("SELECT * FROM " + tableName +
-				" WHERE " + SQLiteHelperVenues.COLUMN_ID + " = '" + id + "'",
-				null);
+		String statement = "SELECT * FROM " + tableName +
+				" WHERE " + SQLiteHelperVenues.COLUMN_ID + "=" + id;
+		Log.d("CS465", statement);
+		Cursor cursor = database.rawQuery(statement, null);
+		cursor.moveToFirst();
 		return cursorToVenue(cursor);
 	}
 	

@@ -1,5 +1,6 @@
 package edu.uiuc.whosinline;
 
+import edu.uiuc.whosinline.fragments.BaseFragment;
 import edu.uiuc.whosinline.fragments.FavoriteFragment;
 import edu.uiuc.whosinline.fragments.NearbyFragment;
 import edu.uiuc.whosinline.fragments.RecentFragment;
@@ -14,19 +15,22 @@ import android.app.AlertDialog.Builder;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ListView;
 
 public class HomeActivity extends Activity {
 
 	private FragmentManager fragmentManager;
 
+	final static public String INTENT_TABLE_NUM = "intent_table_num";
+	final static public String INTENT_VENUE_ID = "intent_venue_id";
+	
 	final static private String STATE_TAB = "state_tab";
 	final static private String STRING_TAB_NEARBY = "NEARBY";
 	final static private String STRING_TAB_RECENT = "RECENT";
 	final static private String STRING_TAB_FAVORITE = "FAVORITE";
-	
-	final static public String INTENT_TABLE_NUM = "intent_table_num";
-	final static public String INTENT_VENUE_ID = "intent_venue_id";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +70,11 @@ public class HomeActivity extends Activity {
 		return true;
 	}
 	
-	// setUpActionBar()
-	// Description: sets up the action bar for this activity by creating three tabs
-	// Parameters: none
-	// Returns: nothing
+	/**
+	 * Sets up the action bar for this activity by creating three tabs.
+	 * 
+	 * @param savedInstanceState a {@link Bundle} object.
+	 */
 	private void setUpActionBar(Bundle savedInstanceState){
 		
 		// get rid of the icon and app title in the action bar
@@ -132,5 +137,26 @@ public class HomeActivity extends Activity {
 		});
 		alertBuilder.setNegativeButton("NO", null);
 		alertBuilder.show();
+	}
+	
+	public void onProfileButtonClick(View v) {
+		BaseFragment fragment = (BaseFragment) fragmentManager.findFragmentById(R.id.fragment_container);
+		ListView lv = fragment.getListView();
+		int tableNum;
+		long venueID = lv.getPositionForView(v);
+		if (fragment instanceof NearbyFragment) {
+			tableNum = 0;
+		} else if (fragment instanceof RecentFragment) {
+			tableNum = 1;
+		} else {
+			tableNum = 2;
+		}
+		
+		Intent intent = new Intent(this, VenueActivity.class);
+		Bundle extras = new Bundle();
+		extras.putInt(INTENT_TABLE_NUM, tableNum);
+		extras.putLong(INTENT_VENUE_ID, venueID);
+		intent.putExtras(extras);
+		startActivity(intent);
 	}
 }
