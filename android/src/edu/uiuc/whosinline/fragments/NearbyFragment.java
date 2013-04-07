@@ -2,14 +2,16 @@ package edu.uiuc.whosinline.fragments;
 
 import java.util.List;
 
-import edu.uiuc.whosinline.R;
-import edu.uiuc.whosinline.data.Venue;
-import edu.uiuc.whosinline.database.SQLiteHelperVenues;
+import com.tjerkw.slideexpandable.library.SlideExpandableListAdapter;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SimpleCursorAdapter;
+import edu.uiuc.whosinline.R;
+import edu.uiuc.whosinline.data.Venue;
+import edu.uiuc.whosinline.database.SQLiteHelperVenues;
 
 public class NearbyFragment extends BaseFragment {
 	
@@ -83,6 +85,9 @@ public class NearbyFragment extends BaseFragment {
 				R.layout.list_cell_venue, dbAccessObj.getCursor(tableNum),
 				from, to, 0);
 
-		setListAdapter(adapter);
+		SlideExpandableListAdapter ad = new SlideExpandableListAdapter(adapter,
+				R.id.cell_id, R.id.expandable);
+		
+		setListAdapter(ad);
 	}
 }

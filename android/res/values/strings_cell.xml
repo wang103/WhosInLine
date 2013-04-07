@@ -10,4 +10,7 @@
 	<string name="str_show_wait">Waiting time:</string>
 	<string name="str_show_wait_unit">minutes</string>
 	
+	<string name="str_profile">Profile</string>
+	<string name="str_write_review">Write Review</string>
+	
 </resources>

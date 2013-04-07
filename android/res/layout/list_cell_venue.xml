@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
 <RelativeLayout
+    android:id="@+id/cell_id"
 	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	android:layout_height="wrap_content" >
 
 <TextView
 	android:id="@+id/cell_venue_name"
@@ -99,3 +104,33 @@
 	android:layout_alignLeft="@+id/cell_wait_minutes" />
 
 </RelativeLayout>
+
+<!-- the expandable view that is initially hidden -->
+
+<LinearLayout
+	android:id="@+id/expandable"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:weightSum="2"
+	android:background="#000000">
+
+<Button
+    android:id="@+id/button_profile"
+	android:layout_width="0dp"
+	android:layout_height="fill_parent"
+	android:layout_weight="1"
+	android:text="@string/str_profile" >
+</Button>
+
+<Button
+	android:id="@+id/button_write_review"
+	android:layout_width="0dp"
+	android:layout_height="fill_parent"
+	android:layout_weight="1"
+	android:text="@string/str_write_review" >
+</Button>
+
+</LinearLayout>
+
+</LinearLayout>
