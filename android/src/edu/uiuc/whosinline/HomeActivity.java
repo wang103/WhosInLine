@@ -25,6 +25,9 @@ public class HomeActivity extends Activity {
 	final static private String STRING_TAB_RECENT = "RECENT";
 	final static private String STRING_TAB_FAVORITE = "FAVORITE";
 	
+	final static public String INTENT_TABLE_NUM = "intent_table_num";
+	final static public String INTENT_VENUE_ID = "intent_venue_id";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

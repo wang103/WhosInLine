@@ -10,24 +10,31 @@ import android.view.MenuItem;
 
 public class VenueActivity extends Activity {
 
-	protected DatabaseAccessObj dbAccessObj;
+	private DatabaseAccessObj dbAccessObj;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// get content from intent
+		
+		// Get content from intent.
 		Bundle extras = getIntent().getExtras();
-		int venue_id = extras.getInt("current_venue_id");
-		// get the database object
+		int tableNum = extras.getInt(HomeActivity.INTENT_TABLE_NUM);
+		int venueId = extras.getInt(HomeActivity.INTENT_VENUE_ID);
+		
+		// Get the database object.
 		dbAccessObj = new DatabaseAccessObj(this);
 		dbAccessObj.open();
-		// here, call the the get_veneue method to get all the info about this venue (doesn't work yet)
-		Venue venue = dbAccessObj.getVenue(venue_id);
-		// set the name of the venue as the title of the action bar
+		
+		// Get all the info about this venue.
+		Venue venue = dbAccessObj.getVenue(tableNum, venueId);
+		
+		// Set the name of the venue as the title of the action bar.
 		setTitle(venue.getName());
-		// give the action bar a back button
+		
+		// Give the action bar a back button.
 		ActionBar actionBar = getActionBar();
 	    actionBar.setDisplayHomeAsUpEnabled(true);
+
 		setContentView(R.layout.activity_venue);
 	}
 
@@ -48,5 +55,16 @@ public class VenueActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-
+	
+	@Override
+	public void onResume() {
+		dbAccessObj.open();
+		super.onResume();
+	}
+	
+	@Override
+	public void onPause() {
+		dbAccessObj.close();
+		super.onPause();
+	}
 }

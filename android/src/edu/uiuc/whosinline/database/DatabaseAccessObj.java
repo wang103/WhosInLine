@@ -34,11 +34,6 @@ public class DatabaseAccessObj {
 	public void close() {
 		dbHelper.close();
 	}
-	
-	public Venue getVenue(int id)
-	{
-		return null;
-	}
 
 	private String getTableName(int tableNum) {
 		if (tableNum == 0) {
@@ -49,6 +44,14 @@ public class DatabaseAccessObj {
 		return SQLiteHelperVenues.TABLE_NAME_FAVORITE;
 	}
 
+	public Venue getVenue(int tableNum, int id) {
+		String tableName = getTableName(tableNum);
+		Cursor cursor = database.rawQuery("SELECT * FROM " + tableName +
+				" WHERE " + SQLiteHelperVenues.COLUMN_ID + " = '" + id + "'",
+				null);
+		return cursorToVenue(cursor);
+	}
+	
 	/**
 	 * Insert a new venue into the SQLite database.
 	 * 
