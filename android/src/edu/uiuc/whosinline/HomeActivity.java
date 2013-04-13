@@ -88,15 +88,15 @@ public class HomeActivity extends Activity {
 		// initiate the three tabs
 		Tab nearbyTab = actionBar.newTab();
 		nearbyTab.setText(STRING_TAB_NEARBY);
-		nearbyTab.setIcon(R.drawable.ic_action_tab_nea);
+		nearbyTab.setIcon(R.drawable.ic_tab_nearby);
 		
 		Tab recentTab = actionBar.newTab();
 		recentTab.setText(STRING_TAB_RECENT);
-		recentTab.setIcon(R.drawable.ic_action_tab_rec);
+		recentTab.setIcon(R.drawable.ic_tab_recent);
 		
 		Tab favoriteTab = actionBar.newTab();
 		favoriteTab.setText(STRING_TAB_FAVORITE);
-		favoriteTab.setIcon(R.drawable.ic_action_tab_fav);
+		favoriteTab.setIcon(R.drawable.ic_tab_favorite);
 
 		// create fragments to display each tab
 		Fragment nearbyFragment = new NearbyFragment();
