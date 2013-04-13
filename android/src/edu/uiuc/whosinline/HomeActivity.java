@@ -1,5 +1,6 @@
 package edu.uiuc.whosinline;
 
+import edu.uiuc.whosinline.adapters.SwipePagerAdapter;
 import edu.uiuc.whosinline.fragments.BaseFragment;
 import edu.uiuc.whosinline.fragments.FavoriteFragment;
 import edu.uiuc.whosinline.fragments.NearbyFragment;
@@ -9,20 +10,22 @@ import edu.uiuc.whosinline.listeners.HomeTabsListener;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends FragmentActivity {
 
 	private FragmentManager fragmentManager;
+	private static ViewPager viewPager;
 
 	final static public String INTENT_TABLE_NUM = "intent_table_num";
 	final static public String INTENT_VENUE_ID = "intent_venue_id";
@@ -35,14 +38,11 @@ public class HomeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		fragmentManager = getFragmentManager();
-		
-		// set up the action bar with tabs
-		setUpActionBar(savedInstanceState);
-		
 		// set the view for this activity
 		setContentView(R.layout.activity_main);
+		fragmentManager = getSupportFragmentManager();
+		// set up the action bar with tabs
+		setUpActionBar(savedInstanceState);
 	}
 	
 	@Override
@@ -103,13 +103,32 @@ public class HomeActivity extends Activity {
 		Fragment recentFragment = new RecentFragment();
 		Fragment favoriteFragment = new FavoriteFragment();
 		
+		// add the fragments to the pager adapter
+		SwipePagerAdapter pagerAdapter = new SwipePagerAdapter(fragmentManager);
+		pagerAdapter.addFragment(nearbyFragment);
+		pagerAdapter.addFragment(recentFragment);
+		pagerAdapter.addFragment(favoriteFragment);
+		
+		// set the adapter to the viewpager
+		viewPager = (ViewPager) findViewById(R.id.pager_view);
+		viewPager.setAdapter(pagerAdapter);
+		viewPager.setOffscreenPageLimit(2);
+		viewPager.setCurrentItem(0);
+		
+		viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+			@Override
+			public void onPageSelected(int position){
+				getActionBar().setSelectedNavigationItem(position);
+			}
+		});
+		
 		// set the tab listeners to listen for clicks
 		nearbyTab.setTabListener(new HomeTabsListener(fragmentManager,
-				nearbyFragment, R.id.fragment_container));
+				nearbyFragment, R.id.fragment_container, viewPager));
 		recentTab.setTabListener(new HomeTabsListener(fragmentManager,
-				recentFragment, R.id.fragment_container));
+				recentFragment, R.id.fragment_container, viewPager));
 		favoriteTab.setTabListener(new HomeTabsListener(fragmentManager,
-				favoriteFragment, R.id.fragment_container));
+				favoriteFragment, R.id.fragment_container, viewPager));
 
 		// Restore the tab that was being viewed.
 		int selectedTabNum = 0;

@@ -3,7 +3,7 @@ package edu.uiuc.whosinline.fragments;
 import com.tjerkw.slideexpandable.library.SlideExpandableListAdapter;
 
 import edu.uiuc.whosinline.database.DatabaseAccessObj;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 
 public abstract class BaseFragment extends ListFragment {
