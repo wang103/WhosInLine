@@ -115,6 +115,7 @@ public class HomeActivity extends FragmentActivity {
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setCurrentItem(0);
 		
+		// set the swipe listener
 		viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
 			@Override
 			public void onPageSelected(int position){
