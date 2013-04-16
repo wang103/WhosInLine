@@ -6,6 +6,10 @@ import edu.uiuc.whosinline.fragments.FavoriteFragment;
 import edu.uiuc.whosinline.fragments.NearbyFragment;
 import edu.uiuc.whosinline.fragments.RecentFragment;
 import edu.uiuc.whosinline.listeners.HomeTabsListener;
+import edu.uiuc.whosinline.windows.ChatWindow;
+import edu.uiuc.whosinline.windows.FavoriteWindow;
+import edu.uiuc.whosinline.windows.SubmitWaitTimeWindow;
+import edu.uiuc.whosinline.windows.WriteReviewWindow;
 
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -35,6 +39,11 @@ public class HomeActivity extends FragmentActivity {
 	final static private String STRING_TAB_RECENT = "RECENT";
 	final static private String STRING_TAB_FAVORITE = "FAVORITE";
 
+	final static private String TAG_SUBMIT_WAIT_TIME_WINDOW = "submit_wait_time";
+	final static private String TAG_CHAT_WINDOW = "chat";
+	final static private String TAG_WRITE_REVIEW_WINDOW = "write_review";
+	final static private String TAG_FAVORITE_WINDOW = "favorite";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -181,20 +190,24 @@ public class HomeActivity extends FragmentActivity {
 		intent.putExtras(extras);
 		startActivity(intent);
 	}
-	
+
 	public void onSubmitWaitButtonClick(View v) {
-		
+		SubmitWaitTimeWindow windowFrag = new SubmitWaitTimeWindow();
+		windowFrag.show(fragmentManager, TAG_SUBMIT_WAIT_TIME_WINDOW);
 	}
-	
+
 	public void onChatButtonClick(View v) {
-		
+		ChatWindow windowFrag = new ChatWindow();
+		windowFrag.show(fragmentManager, TAG_CHAT_WINDOW);
 	}
-	
+
 	public void onWriteReviewButtonClick(View v) {
-		
+		WriteReviewWindow windowFrag = new WriteReviewWindow();
+		windowFrag.show(fragmentManager, TAG_WRITE_REVIEW_WINDOW);
 	}
-	
+
 	public void onFavoriteButtonClick(View v) {
-		
+		FavoriteWindow windowFrag = new FavoriteWindow();
+		windowFrag.show(fragmentManager, TAG_FAVORITE_WINDOW);
 	}
 }

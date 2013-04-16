@@ -8,19 +8,19 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 
-public class SubmitWaitTimeWindow extends DialogFragment {
+public class WriteReviewWindow extends DialogFragment {
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle("Submit Wait Time");
+		builder.setTitle("Write Review");
 		
 		// Get the layout inflater.
 		LayoutInflater inflator = getActivity().getLayoutInflater();
 		
 		// Inflate and set the layout for the dialog.
 		// Pass null as the parent view because it's going in the dialog layout.
-		builder.setView(inflator.inflate(R.layout.window_submit_wait_time, null))
+		builder.setView(inflator.inflate(R.layout.window_write_review, null))
 		// Add action buttons
 			.setPositiveButton(R.string.button_positive, new DialogInterface.OnClickListener() {
 				@Override
@@ -32,7 +32,7 @@ public class SubmitWaitTimeWindow extends DialogFragment {
 			.setNegativeButton(R.string.button_negative, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					SubmitWaitTimeWindow.this.getDialog().cancel();
+					WriteReviewWindow.this.getDialog().cancel();
 				}
 			});
 		
