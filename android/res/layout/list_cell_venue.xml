@@ -112,16 +112,50 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="horizontal"
-	android:weightSum="2"
-	android:background="#000000">
+	android:weightSum="5"
+	android:background="#555555">
 
 <Button
     android:id="@+id/button_profile"
 	android:layout_width="0dp"
 	android:layout_height="fill_parent"
 	android:layout_weight="1"
+	android:drawableTop="@drawable/ic_list_profile"
+	android:background="@android:color/transparent"
 	android:onClick="onProfileButtonClick"
-	android:text="@string/str_profile" >
+	android:textColor="#ffffff"
+	android:text="@string/str_profile"
+	android:textSize="12sp"
+	android:layout_marginBottom="5dp"
+	android:layout_marginTop="5dp" >
+</Button>
+
+<Button
+    android:id="@+id/button_submit_wait"
+	android:layout_width="0dp"
+	android:layout_height="fill_parent"
+	android:layout_weight="1"
+	android:drawableTop="@drawable/ic_list_wait"
+	android:background="@android:color/transparent"
+	android:textColor="#ffffff"
+	android:text="Submit Wait"
+	android:textSize="12sp"
+	android:layout_marginBottom="5dp"
+	android:layout_marginTop="5dp" >
+</Button>
+
+<Button
+    android:id="@+id/button_chat"
+	android:layout_width="0dp"
+	android:layout_height="fill_parent"
+	android:layout_weight="1"
+	android:drawableTop="@drawable/ic_list_chat"
+	android:background="@android:color/transparent"
+	android:textColor="#ffffff"
+	android:text="Chat"
+	android:textSize="12sp"
+	android:layout_marginBottom="5dp"
+	android:layout_marginTop="5dp" >
 </Button>
 
 <Button
@@ -129,7 +163,27 @@
 	android:layout_width="0dp"
 	android:layout_height="fill_parent"
 	android:layout_weight="1"
-	android:text="@string/str_write_review" >
+	android:background="@android:color/transparent"
+	android:drawableTop="@drawable/ic_list_review"
+	android:textColor="#ffffff"
+	android:text="Review"
+	android:textSize="12sp"
+	android:layout_marginBottom="5dp"
+	android:layout_marginTop="5dp" >
+</Button>
+
+<Button
+	android:id="@+id/button_favorite"
+	android:layout_width="0dp"
+	android:layout_height="fill_parent"
+	android:layout_weight="1"
+	android:background="@android:color/transparent"
+	android:drawableTop="@drawable/ic_list_favorite"
+	android:textColor="#ffffff"
+	android:text="Favorite"
+	android:textSize="12sp"
+	android:layout_marginBottom="5dp"
+	android:layout_marginTop="5dp" >
 </Button>
 
 </LinearLayout>
