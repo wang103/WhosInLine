@@ -160,7 +160,8 @@ public class HomeActivity extends FragmentActivity {
 	}
 	
 	public void onProfileButtonClick(View v) {
-		BaseFragment fragment = (BaseFragment) fragmentManager.findFragmentById(R.id.fragment_container);
+		BaseFragment fragment = (BaseFragment) fragmentManager.findFragmentByTag(
+				"android:switcher:" + R.id.pager_view + ":0");
 		ListView lv = fragment.getListView();
 		int tableNum;
 		long venueID = lv.getPositionForView(v);
