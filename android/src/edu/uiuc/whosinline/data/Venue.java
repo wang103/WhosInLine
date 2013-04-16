@@ -10,9 +10,11 @@ public class Venue {
 	private int rating;
 	private float distance;
 	private int waitMinutes;
+	private String address;
 	
 	public Venue(int id, String name, String imagePath, int imageResource,
-			String type, int rating, float distance, int waitMinutes) {
+			String type, int rating, float distance, int waitMinutes,
+			String address) {
 		this.id = id;
 		this.name = name;
 		this.imagePath = imagePath;
@@ -21,6 +23,7 @@ public class Venue {
 		this.rating = rating;
 		this.distance = distance;
 		this.waitMinutes = waitMinutes;
+		this.address = address;
 	}
 	
 	public int getId() {
@@ -85,5 +88,13 @@ public class Venue {
 	
 	public void setWaitMinutes(int waitMinutes) {
 		this.waitMinutes = waitMinutes;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }

@@ -19,9 +19,10 @@ public class SQLiteHelperVenues extends SQLiteOpenHelper {
 	public static final String COLUMN_VENUE_RATING = "rating";
 	public static final String COLUMN_VENUE_DISTANCE = "distance";
 	public static final String COLUMN_VENUE_WAIT_MIN = "wait_minutes";
+	public static final String COLUMN_VENUE_ADDRESS = "address";
 
 	private static final String DATABASE_NAME = "whosinline.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	
 	public SQLiteHelperVenues(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -37,7 +38,8 @@ public class SQLiteHelperVenues extends SQLiteOpenHelper {
 				+ COLUMN_VENUE_TYPE + " tinytext not null, "
 				+ COLUMN_VENUE_RATING + " tinyint(1) not null, "
 				+ COLUMN_VENUE_DISTANCE + " float not null, "
-				+ COLUMN_VENUE_WAIT_MIN + " int not null);";
+				+ COLUMN_VENUE_WAIT_MIN + " int not null, "
+				+ COLUMN_VENUE_ADDRESS + " text not null);";
 
 		db.execSQL(databaseCreateStat);
 	}

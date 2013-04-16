@@ -17,7 +17,8 @@ public class FavoriteFragment extends BaseFragment {
 		Venue venue;
 		
 		venue = new Venue(0, "Chipotle Mexican Grill", "", R.drawable.ic_type_mexican,
-				"Restaurant", R.drawable.stars_5, 0.12f, 10);
+				"Restaurant", R.drawable.stars_5, 0.12f, 10,
+				"528 E Green St #101, Champaign, IL");
 		dbAccessObj.insertVenue(tableNum, venue);
 	}
 	

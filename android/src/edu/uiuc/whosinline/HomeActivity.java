@@ -182,7 +182,7 @@ public class HomeActivity extends FragmentActivity {
 		} else {
 			tableNum = 2;
 		}
-		
+
 		Intent intent = new Intent(this, VenueActivity.class);
 		Bundle extras = new Bundle();
 		extras.putInt(INTENT_TABLE_NUM, tableNum);

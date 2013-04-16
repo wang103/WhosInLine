@@ -17,11 +17,13 @@ public class RecentFragment extends BaseFragment {
 		Venue venue;
 		
 		venue = new Venue(0, "Cravings Restaurant", "", R.drawable.ic_type_asian,
-				"Restaurant", R.drawable.stars_4, 0.15f, 15);
+				"Restaurant", R.drawable.stars_4, 0.15f, 15,
+				"603 S Wright St, Champaign, IL");
 		dbAccessObj.insertVenue(tableNum, venue);
 		
 		venue = new Venue(1, "Chipotle Mexican Grill", "", R.drawable.ic_type_mexican,
-				"Restaurant", R.drawable.stars_5, 0.12f, 10);
+				"Restaurant", R.drawable.stars_5, 0.12f, 10,
+				"528 E Green St #101, Champaign, IL");
 		dbAccessObj.insertVenue(tableNum, venue);
 	}
 	

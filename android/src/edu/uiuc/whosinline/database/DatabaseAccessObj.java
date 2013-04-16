@@ -22,7 +22,8 @@ public class DatabaseAccessObj {
 			SQLiteHelperVenues.COLUMN_VENUE_TYPE,
 			SQLiteHelperVenues.COLUMN_VENUE_RATING,
 			SQLiteHelperVenues.COLUMN_VENUE_DISTANCE,
-			SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN};
+			SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN,
+			SQLiteHelperVenues.COLUMN_VENUE_ADDRESS};
 
 	public DatabaseAccessObj(Context context) {
 		dbHelper = new SQLiteHelperVenues(context);
@@ -72,6 +73,7 @@ public class DatabaseAccessObj {
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_RATING, venue.getRating());
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_DISTANCE, venue.getDistance());
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN, venue.getWaitMinutes());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_ADDRESS, venue.getAddress());
 
 		String tableName = getTableName(tableNum);
 
@@ -128,7 +130,8 @@ public class DatabaseAccessObj {
 	private Venue cursorToVenue(Cursor cursor) {
 		Venue venue = new Venue(cursor.getInt(0), cursor.getString(1),
 					cursor.getString(2), cursor.getInt(3), cursor.getString(4),
-					cursor.getInt(5), cursor.getFloat(6), cursor.getInt(7));
+					cursor.getInt(5), cursor.getFloat(6), cursor.getInt(7),
+					cursor.getString(8));
 		return venue;
 	}
 }
