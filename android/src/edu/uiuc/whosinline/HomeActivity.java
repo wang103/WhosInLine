@@ -25,23 +25,26 @@ import android.widget.ListView;
 public class HomeActivity extends FragmentActivity {
 
 	private FragmentManager fragmentManager;
-	private static ViewPager viewPager;
+	private ViewPager viewPager;
 
 	final static public String INTENT_TABLE_NUM = "intent_table_num";
 	final static public String INTENT_VENUE_ID = "intent_venue_id";
-	
+
 	final static private String STATE_TAB = "state_tab";
 	final static private String STRING_TAB_NEARBY = "NEARBY";
 	final static private String STRING_TAB_RECENT = "RECENT";
 	final static private String STRING_TAB_FAVORITE = "FAVORITE";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// set the view for this activity
+		
+		// Set the view for this activity.
 		setContentView(R.layout.activity_main);
+		
 		fragmentManager = getSupportFragmentManager();
-		// set up the action bar with tabs
+		
+		// Set up the action bar with tabs.
 		setUpActionBar(savedInstanceState);
 	}
 	
@@ -77,15 +80,15 @@ public class HomeActivity extends FragmentActivity {
 	 */
 	private void setUpActionBar(Bundle savedInstanceState){
 		
-		// get rid of the icon and app title in the action bar
+		// Get rid of the icon and app title in the action bar.
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowTitleEnabled(false);
 		
-		// set up tabs
+		// Set up tabs.
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		// initiate the three tabs
+		// Initiate the three tabs.
 		Tab nearbyTab = actionBar.newTab();
 		nearbyTab.setText(STRING_TAB_NEARBY);
 		nearbyTab.setIcon(R.drawable.ic_tab_nearby);
@@ -98,38 +101,35 @@ public class HomeActivity extends FragmentActivity {
 		favoriteTab.setText(STRING_TAB_FAVORITE);
 		favoriteTab.setIcon(R.drawable.ic_tab_favorite);
 
-		// create fragments to display each tab
+		// Create fragments to display each tab.
 		Fragment nearbyFragment = new NearbyFragment();
 		Fragment recentFragment = new RecentFragment();
 		Fragment favoriteFragment = new FavoriteFragment();
 		
-		// add the fragments to the pager adapter
+		// Add the fragments to the pager adapter.
 		SwipePagerAdapter pagerAdapter = new SwipePagerAdapter(fragmentManager);
 		pagerAdapter.addFragment(nearbyFragment);
 		pagerAdapter.addFragment(recentFragment);
 		pagerAdapter.addFragment(favoriteFragment);
 		
-		// set the adapter to the viewpager
+		// Set the adapter to the ViewPager.
 		viewPager = (ViewPager) findViewById(R.id.pager_view);
 		viewPager.setAdapter(pagerAdapter);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setCurrentItem(0);
 		
-		// set the swipe listener
-		viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+		// Set the swipe listener.
+		viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
-			public void onPageSelected(int position){
+			public void onPageSelected(int position) {
 				getActionBar().setSelectedNavigationItem(position);
 			}
 		});
 		
-		// set the tab listeners to listen for clicks
-		nearbyTab.setTabListener(new HomeTabsListener(fragmentManager,
-				nearbyFragment, R.id.fragment_container, viewPager));
-		recentTab.setTabListener(new HomeTabsListener(fragmentManager,
-				recentFragment, R.id.fragment_container, viewPager));
-		favoriteTab.setTabListener(new HomeTabsListener(fragmentManager,
-				favoriteFragment, R.id.fragment_container, viewPager));
+		// Set the tab listeners to listen for clicks.
+		nearbyTab.setTabListener(new HomeTabsListener(viewPager));
+		recentTab.setTabListener(new HomeTabsListener(viewPager));
+		favoriteTab.setTabListener(new HomeTabsListener(viewPager));
 
 		// Restore the tab that was being viewed.
 		int selectedTabNum = 0;
@@ -137,7 +137,7 @@ public class HomeActivity extends FragmentActivity {
 			selectedTabNum = savedInstanceState.getInt(STATE_TAB);
 		}
 
-		// add tabs to the action bar
+		// Add tabs to the action bar.
 		actionBar.addTab(nearbyTab, selectedTabNum == 0);
 		actionBar.addTab(recentTab, selectedTabNum == 1);
 		actionBar.addTab(favoriteTab, selectedTabNum == 2);

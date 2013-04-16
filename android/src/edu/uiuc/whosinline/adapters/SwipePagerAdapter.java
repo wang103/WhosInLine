@@ -14,7 +14,7 @@ public class SwipePagerAdapter extends FragmentPagerAdapter {
 		super(manager);
 	}
 
-	public void addFragment(Fragment fragment){
+	public void addFragment(Fragment fragment) {
 		mFragments.add(fragment);
 		notifyDataSetChanged();
 	}
@@ -26,8 +26,6 @@ public class SwipePagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return mFragments.size();
 	}
-
 }
