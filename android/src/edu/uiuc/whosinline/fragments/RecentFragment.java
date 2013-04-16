@@ -8,21 +8,34 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 public class RecentFragment extends BaseFragment {
 	
 	private int tableNum = 1;
+	
+	private void insertTestData() {
+		Venue venue;
+		
+		venue = new Venue(0, "Cravings Restaurant", "", R.drawable.cravings,
+				"Restaurant", R.drawable.stars_4, 0.15f, 15);
+		dbAccessObj.insertVenue(tableNum, venue);
+		
+		venue = new Venue(1, "Chipotle Mexican Grill", "", R.drawable.chipotle,
+				"Restaurant", R.drawable.stars_5, 0.12f, 10);
+		dbAccessObj.insertVenue(tableNum, venue);
+	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		List<Venue> venues = dbAccessObj.getAllVenues(tableNum);
+		for (Venue venue : venues) {
+			dbAccessObj.deleteVenue(tableNum, venue);
+		}
+		insertTestData();
 		
-		ArrayAdapter<Venue> adapter = new ArrayAdapter<Venue>(getActivity(),
-				R.layout.list_cell_venue, venues);
-		setListAdapter(adapter);
+		fillData(tableNum);
 	}
 	
 	@Override
