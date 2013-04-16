@@ -24,13 +24,14 @@ public class SubmitWaitTimeWindow extends DialogFragment {
 			.setPositiveButton(R.string.button_positive, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
+					// Confirm the wait time is submitted.
 					
 				}
 			})
 			.setNegativeButton(R.string.button_negative, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					
+					SubmitWaitTimeWindow.this.getDialog().cancel();
 				}
 			});
 		

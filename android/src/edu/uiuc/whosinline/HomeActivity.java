@@ -181,4 +181,20 @@ public class HomeActivity extends FragmentActivity {
 		intent.putExtras(extras);
 		startActivity(intent);
 	}
+	
+	public void onSubmitWaitButtonClick(View v) {
+		
+	}
+	
+	public void onChatButtonClick(View v) {
+		
+	}
+	
+	public void onWriteReviewButtonClick(View v) {
+		
+	}
+	
+	public void onFavoriteButtonClick(View v) {
+		
+	}
 }
