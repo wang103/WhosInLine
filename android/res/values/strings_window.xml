@@ -4,4 +4,6 @@
     <string name="button_positive">Finished</string>
     <string name="button_negative">Cancel</string>
     
+    <string name="str_prompt_wait">How long have you waited at</string>
+    
 </resources>

@@ -1,8 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
 
+<RelativeLayout
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+<TextView
+	android:id="@+id/widget33"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_prompt_wait"
+	android:layout_alignParentTop="true"
+	android:layout_centerHorizontal="true" />
+
+<TextView
+	android:id="@+id/venue_name_textview"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@+id/widget33"
+	android:layout_centerHorizontal="true" />
+
+<EditText
+	android:id="@+id/wait_time_edittext"
+	android:inputType="number"
+	android:layout_width="130dp"
+	android:layout_height="wrap_content"
+	android:textSize="18sp"
+	android:layout_below="@+id/venue_name_textview"
+	android:layout_alignLeft="@+id/widget33" />
+
+<TextView
+	android:id="@+id/widget36"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_show_wait_unit"
+	android:layout_alignBaseline="@+id/wait_time_edittext"
+	android:layout_alignRight="@+id/widget33" />
+
+<LinearLayout 
+	style="?android:attr/buttonBarStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="0dp"
+    android:measureWithLargestChild="true"
+   	android:layout_below="@+id/wait_time_edittext" >
+
+<Button 
+	android:id="@+id/negative_button"
+    style="?android:attr/buttonBarButtonStyle"
+    android:layout_height="wrap_content"
+    android:layout_width="0dp"
+    android:layout_weight="1.0"
+    android:text="@string/button_negative" />
+
+<Button 
+	android:id="@+id/positive_button"
+	style="?android:attr/buttonBarButtonStyle"
+	android:layout_height="wrap_content"
+	android:layout_width="0dp"
+	android:layout_weight="1.0"
+	android:text="@string/button_positive" />
 </LinearLayout>
+    
+</RelativeLayout>

@@ -192,7 +192,25 @@ public class HomeActivity extends FragmentActivity {
 	}
 
 	public void onSubmitWaitButtonClick(View v) {
+		int curItem = viewPager.getCurrentItem();
+		BaseFragment fragment = (BaseFragment) fragmentManager.findFragmentByTag(
+				"android:switcher:" + R.id.pager_view + ":" + curItem);
+		ListView lv = fragment.getListView();
+		int tableNum;
+		long venueID = lv.getPositionForView(v);
+		if (fragment instanceof NearbyFragment) {
+			tableNum = 0;
+		} else if (fragment instanceof RecentFragment) {
+			tableNum = 1;
+		} else {
+			tableNum = 2;
+		}
+		
 		SubmitWaitTimeWindow windowFrag = new SubmitWaitTimeWindow();
+		Bundle extras = new Bundle();
+		extras.putInt(INTENT_TABLE_NUM, tableNum);
+		extras.putLong(INTENT_VENUE_ID, venueID);
+		windowFrag.setArguments(extras);
 		windowFrag.show(fragmentManager, TAG_SUBMIT_WAIT_TIME_WINDOW);
 	}
 
