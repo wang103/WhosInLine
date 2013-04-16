@@ -20,7 +20,7 @@
  
         <ImageView
             android:id="@+id/cell_venue_image"
-            android:src="@drawable/chipotle"
+            android:src="@drawable/ic_type_mexican"
             android:layout_width="50dip"
             android:layout_height="50dip"
         />

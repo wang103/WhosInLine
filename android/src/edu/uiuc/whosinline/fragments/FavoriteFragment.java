@@ -16,7 +16,7 @@ public class FavoriteFragment extends BaseFragment {
 	private void insertTestData() {
 		Venue venue;
 		
-		venue = new Venue(0, "Chipotle Mexican Grill", "", R.drawable.chipotle,
+		venue = new Venue(0, "Chipotle Mexican Grill", "", R.drawable.ic_type_mexican,
 				"Restaurant", R.drawable.stars_5, 0.12f, 10);
 		dbAccessObj.insertVenue(tableNum, venue);
 	}
