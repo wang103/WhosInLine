@@ -5,5 +5,9 @@
     <string name="button_negative">Cancel</string>
     
     <string name="str_prompt_wait">How long have you waited at</string>
+    <string name="str_prompt_review">Review for</string>
+    
+    <string name="hint_title">Title</string>
+    <string name="hint_content">Content</string>
     
 </resources>
