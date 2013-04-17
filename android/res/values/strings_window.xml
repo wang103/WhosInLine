@@ -3,8 +3,10 @@
     
     <string name="button_positive">Finished</string>
     <string name="button_negative">Cancel</string>
+    <string name="button_send">send</string>
     
     <string name="str_prompt_wait">How long have you waited at</string>
+    <string name="str_prompt_chat_venue">You are currently chatting with people at</string>
     <string name="str_prompt_review">Review for</string>
     
     <string name="hint_title">Title</string>
