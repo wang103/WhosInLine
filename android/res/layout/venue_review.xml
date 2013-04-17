@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <TextView
+		android:id="@+id/review_title"
+		android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Chipotle is the best!"
+        android:textColor="#040404"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+    
+    <TextView
+        android:id="@+id/review_author"
+		android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/review_title"
+        android:text="By hughjass1985"
+        android:paddingLeft="6dp"
+        android:paddingTop="2dp"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:typeface="sans" />
+    
+    <RatingBar
+            android:id="@+id/review_rating_bar"
+            style="@style/listRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/review_author"
+            android:layout_marginTop="3dip"
+            android:layout_marginLeft="6dip"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4.5"
+            android:stepSize="0.5" />
+    
+    <TextView
+   	    android:id="@+id/review_rating_number"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_below="@id/review_author"
+   	    android:layout_toRightOf="@id/review_rating_bar"
+   	    android:layout_marginLeft="3dip"
+   	    android:layout_marginTop="2dip"
+   	    android:text="4.5/5.0"
+   	    android:textSize="11sp"
+   	    android:textStyle="italic" />
+    
+    <TextView
+        android:id="@+id/review_content"
+        android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:layout_below="@id/review_rating_bar"
+   	    android:layout_alignParentLeft="true"
+   	    android:layout_marginLeft="5dip"
+   	    android:layout_marginTop="5dip"
+   	    android:text="This is by far the best fast food you can buy! Everything is fresh and tastes great. All chain restaurants should be like Chipotle."
+   	    android:textSize="13sp"
+   	    android:textStyle="normal" />
+    
+    <View
+   	    android:layout_below="@id/review_content"
+	    android:layout_width="fill_parent"
+	    android:layout_marginTop="10dp"
+	    android:layout_height="1dp"
+	    android:background="@android:color/darker_gray"/>
+</RelativeLayout>

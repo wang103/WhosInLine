@@ -46,7 +46,7 @@
    	    android:layout_marginLeft="3dip"
    	    android:layout_marginTop="3dip"
    	    android:layout_toRightOf="@id/venue_info_rating"
-   	    android:text="4.5/5"
+   	    android:text="4.5/5.0"
    	    android:textColor="#343434"
    	    android:textSize="11sp"
    	    android:textStyle="italic" />

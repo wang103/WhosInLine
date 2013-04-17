@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <string name="button_positive">Finished</string>
+    <string name="button_positive">Submit</string>
     <string name="button_negative">Cancel</string>
     <string name="button_send">send</string>
     
