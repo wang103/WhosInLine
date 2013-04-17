@@ -112,7 +112,7 @@ public class NearbyFragment extends BaseFragment {
 		dbAccessObj.insertVenue(tableNum, venue);
 
 		venue = new Venue(19, "Mike N Molly's", "", R.drawable.ic_type_bar, 
-				"Bar", R.drawable.stars_, 0.37f, 5, 
+				"Bar", R.drawable.stars_4, 0.37f, 5, 
 				"105 N Market St Champaign, IL 61820"); 
 		dbAccessObj.insertVenue(tableNum, venue);
 
