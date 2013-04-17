@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -99,5 +100,84 @@
             android:textColor="#343434"
             android:textSize="10sp" />
     </RelativeLayout>
-
+	<!-- the expandable view that is initially hidden -->
+	
+	<LinearLayout
+		android:id="@+id/expandable"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:weightSum="5"
+		android:background="#555555">
+		<Button
+		    android:id="@+id/button_profile"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:drawableTop="@drawable/ic_list_profile"
+			android:background="@android:color/transparent"
+			android:onClick="onProfileButtonClick"
+			android:textColor="#ffffff"
+			android:text="@string/str_profile"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+		    android:id="@+id/button_submit_wait"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:drawableTop="@drawable/ic_list_wait"
+			android:background="@android:color/transparent"
+			android:onClick="onSubmitWaitButtonClick"
+			android:textColor="#ffffff"
+			android:text="@string/str_submit_wait"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+		    android:id="@+id/button_chat"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:drawableTop="@drawable/ic_list_chat"
+			android:background="@android:color/transparent"
+			android:onClick="onChatButtonClick"
+			android:textColor="#ffffff"
+			android:text="@string/str_chat"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+			android:id="@+id/button_write_review"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:background="@android:color/transparent"
+			android:onClick="onWriteReviewButtonClick"
+			android:drawableTop="@drawable/ic_list_review"
+			android:textColor="#ffffff"
+			android:text="@string/str_write_review"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+			android:id="@+id/button_favorite"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:background="@android:color/transparent"
+			android:onClick="onFavoriteButtonClick"
+			android:drawableTop="@drawable/ic_list_favorite"
+			android:textColor="#ffffff"
+			android:text="@string/str_favorite"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+	</LinearLayout>
 </LinearLayout>
