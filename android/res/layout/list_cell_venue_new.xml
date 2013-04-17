@@ -33,7 +33,7 @@
             android:layout_toRightOf="@id/cell_venue_image_container"
             android:text="Chipotle Mexican Grill"
             android:textColor="#040404"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:typeface="sans" />
 
@@ -43,12 +43,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/cell_venue_name"
-            android:layout_gravity="center_vertical"
             android:layout_toRightOf="@id/cell_venue_image_container"
+            android:layout_marginTop="1dip"
             android:isIndicator="true"
             android:numStars="5"
             android:rating="4.5"
             android:stepSize="0.5" />
+        
+        <TextView
+            android:id="@+id/cell_rating_number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cell_venue_name"
+            android:layout_toRightOf="@id/cell_rating"
+            android:layout_marginLeft="3dip"
+            android:layout_marginTop="1dip"
+            android:text="4.5/5"
+            android:textColor="#343434"
+            android:textStyle="italic"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/cell_wait_minutes"
@@ -57,9 +70,9 @@
             android:layout_below="@id/cell_rating"
             android:layout_marginTop="1dip"
             android:layout_toRightOf="@+id/cell_venue_image_container"
-            android:text="15 minutes"
+            android:text="15 minute wait"
             android:textColor="#343434"
-            android:textSize="10sp" />
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/cell_venue_type"
