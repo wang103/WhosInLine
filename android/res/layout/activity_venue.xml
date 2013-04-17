@@ -57,19 +57,21 @@
    	    android:layout_toRightOf="@id/venue_info_rating"
    	    android:text="4.5/5.0"
    	    android:textColor="#343434"
-   	    android:textSize="11sp"
-   	    android:textStyle="italic" />
+   	    android:textSize="12sp"
+   	    android:textStyle="italic"
+   	    android:typeface="sans" />
    	<TextView
    	    android:id="@+id/venue_info_review_number"
    	    android:layout_width="wrap_content"
    	    android:layout_height="wrap_content"
    	    android:layout_below="@id/venue_info_name"
-   	    android:layout_marginLeft="1dip"
+   	    android:layout_marginLeft="2dip"
    	    android:layout_marginTop="3dip"
    	    android:layout_toRightOf="@id/venue_info_rating_number"
    	    android:text="(12 reviews)"
    	    android:textColor="#343434"
-   	    android:textSize="11sp"
+   	    android:textSize="12sp"
+   	    android:typeface="sans"
    	    android:textStyle="italic" />
    	<TextView
    	    android:id="@+id/venue_info_wait"
@@ -81,7 +83,8 @@
    	    android:layout_marginLeft="6dip"
    	    android:text="Wait: 15 minutes"
    	    android:textColor="#343434"
-   	    android:textSize="11sp" />
+   	    android:typeface="sans"
+   	    android:textSize="14sp" />
    	<TextView
    	    android:id="@+id/venue_info_address"
    	    android:layout_width="wrap_content"
@@ -90,10 +93,10 @@
    	    android:layout_toRightOf="@id/venue_info_image"
    	    android:layout_marginTop="2dip"
    	    android:layout_marginLeft="6dip"
-   	    android:text="Address: 528 E Green St #101
-Champaign, IL 61820"
+   	    android:text="Address: 528 E Green St #101, Champaign, IL 61820"
    	    android:textColor="#343434"
-   	    android:textSize="11sp" />
+   	    android:autoLink="map"
+   	    android:textSize="14sp" />
    	<TextView
    	    android:id="@+id/venue_info_distance"
    	    android:layout_width="wrap_content"
@@ -104,7 +107,8 @@ Champaign, IL 61820"
    	    android:layout_marginLeft="6dip"
    	    android:text="Distance: 0.79 miles"
    	    android:textColor="#343434"
-   	    android:textSize="11sp" />
+   	    android:typeface="sans"
+   	    android:textSize="14sp" />
    	<TextView
    	    android:id="@+id/venue_info_phone"
    	    android:layout_width="wrap_content"
@@ -115,7 +119,9 @@ Champaign, IL 61820"
    	    android:layout_marginLeft="6dip"
    	    android:text="Phone: (217) 344-0466"
    	    android:textColor="#343434"
-   	    android:textSize="11sp" />
+   	    android:typeface='sans'
+   	    android:textSize="14sp"
+   	    android:autoLink="phone" />
    	 <TextView
    	    android:id="@+id/venue_info_hours"
    	    android:layout_width="wrap_content"
@@ -123,10 +129,11 @@ Champaign, IL 61820"
    	    android:layout_below="@id/venue_info_phone"
    	    android:layout_alignParentLeft="true"
    	    android:layout_marginTop="2dip"
-   	    android:layout_marginLeft="19dip"
+   	    android:layout_marginLeft="5dip"
    	    android:text="Hours today: 11:00 AM to 10:00 PM"
    	    android:textColor="#343434"
-   	    android:textSize="11sp" />
+   	    android:typeface="sans"
+   	    android:textSize="14sp" />
    	 
    	<View
    	    android:id="@+id/venue_divider1"
@@ -143,7 +150,8 @@ Champaign, IL 61820"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Today's Specials" 
-        android:textSize="14sp"
+        android:textSize="16sp"
+        android:typeface="sans"
         android:paddingTop="10dp"
         android:textStyle="bold"
         android:paddingLeft="6dp"
@@ -153,6 +161,7 @@ Champaign, IL 61820"
         android:id="@+id/ticker_scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scrollbars="none"
         android:layout_below="@id/ticker_title" >
 		<TextView
 	       	android:id="@+id/ticker_text"
@@ -161,7 +170,9 @@ Champaign, IL 61820"
 	       	android:paddingRight="6dp"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:text="Get free chips when you check-in with Who's in Line!" />
+	    	android:typeface="sans"
+	    	android:textSize="14sp"
+	    	android:text="Get free chips when you check-in with Who's in Line! Get free chips when you check-in with who's in line! Get a steak and chicken burrito for $7.00!" />
 	</HorizontalScrollView>
 	
 	<View
@@ -181,11 +192,12 @@ Champaign, IL 61820"
    	    android:layout_marginLeft="6dp"
    	    android:layout_below="@id/venue_divider2"
    	    android:text="Reviews"
-   	    android:textSize="14sp"
+   	    android:textSize="16sp"
    	    android:textStyle="bold"/>
    	<ListView 
    	   	android:id="@+id/review_list"
     	android:layout_width="match_parent"
+    	android:layout_below="@id/review_header"
    	    android:layout_height="wrap_content" />
 </RelativeLayout>
 </ScrollView>
