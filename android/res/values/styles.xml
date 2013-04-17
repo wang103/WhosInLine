@@ -19,9 +19,8 @@
     
     <style name="listRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/ratingstars</item>
-        <item name="android:spacing">5dip</item>
-        <item name="android:minHeight">10.8dip</item>
-        <item name="android:maxHeight">10.8dip</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
     </style>
 
 </resources>

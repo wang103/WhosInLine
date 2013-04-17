@@ -16,6 +16,7 @@ public class VenueActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_venue);
 		
 		// Get content from intent.
 		Bundle extras = getIntent().getExtras();
@@ -35,8 +36,6 @@ public class VenueActivity extends Activity {
 		// Give the action bar a back button.
 		ActionBar actionBar = getActionBar();
 	    actionBar.setDisplayHomeAsUpEnabled(true);
-
-		setContentView(R.layout.activity_venue);
 	}
 
 	@Override

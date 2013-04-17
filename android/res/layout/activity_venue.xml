@@ -1,9 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     tools:context=".VenueActivity" >
+    
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 	
     <!-- Venue Info -->
     
@@ -37,6 +42,7 @@
             android:layout_toRightOf="@id/venue_info_image"
             android:layout_marginTop="3dip"
             android:layout_marginLeft="6dip"
+            android:layout_gravity="left"
             android:isIndicator="true"
             android:numStars="5"
             android:rating="4.5"
@@ -177,10 +183,9 @@ Champaign, IL 61820"
    	    android:text="Reviews"
    	    android:textSize="14sp"
    	    android:textStyle="bold"/>
-   	<ListView
-   	    android:id="@+id/review_list"
-   	    android:layout_width="match_parent"
-   	    android:layout_height="wrap_content"    
-   	    android:layout_below="@id/review_header" />
-
+   	<ListView 
+   	   	android:id="@+id/review_list"
+    	android:layout_width="match_parent"
+   	    android:layout_height="wrap_content" />
 </RelativeLayout>
+</ScrollView>
