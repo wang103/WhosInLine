@@ -1,8 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+<RelativeLayout
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+<TextView
+	android:id="@+id/widget39"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_prompt_review"
+	android:layout_alignParentTop="true"
+	android:layout_alignParentLeft="true" />
 
+<TextView
+	android:id="@+id/venue_name_textview"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_alignParentTop="true"
+	android:layout_toRightOf="@+id/widget39"
+	android:paddingLeft="3dp" />
+
+<EditText
+	android:id="@+id/review_title_edittext"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:hint="@string/hint_title"
+	android:textSize="18sp"
+	android:layout_below="@+id/venue_name_textview"
+	android:layout_alignParentLeft="true" />
+
+<RatingBar
+	android:id="@+id/review_ratingbar"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@+id/review_title_edittext"
+	android:layout_centerHorizontal="true" />
+
+<EditText
+	android:id="@+id/review_content_edittext"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:hint="@string/hint_content"
+	android:lines="4"
+	android:textSize="18sp"
+	android:layout_below="@+id/review_ratingbar"
+	android:layout_alignParentLeft="true" />
+
+<LinearLayout 
+	style="?android:attr/buttonBarStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="0dp"
+    android:measureWithLargestChild="true"
+   	android:layout_below="@+id/review_content_edittext" >
+
+<Button 
+	android:id="@+id/negative_button"
+    style="?android:attr/buttonBarButtonStyle"
+    android:layout_height="wrap_content"
+    android:layout_width="0dp"
+    android:layout_weight="1.0"
+    android:text="@string/button_negative" />
+
+<Button 
+	android:id="@+id/positive_button"
+	style="?android:attr/buttonBarButtonStyle"
+	android:layout_height="wrap_content"
+	android:layout_width="0dp"
+	android:layout_weight="1.0"
+	android:text="@string/button_positive" />
 </LinearLayout>
+
+</RelativeLayout>

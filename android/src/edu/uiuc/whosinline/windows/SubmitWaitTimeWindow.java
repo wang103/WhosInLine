@@ -16,8 +16,6 @@ public class SubmitWaitTimeWindow extends BaseWindow {
 	
 	private TextView textViewVenueName;
 	private EditText editTextWaitTime;
-	private Button positiveButton;
-	private Button negativeButton;
 	
 	private void submitWaitTime(int waitTimeMinutes) {
 		Toast toast = Toast.makeText(getActivity(), "Wait time submitted", Toast.LENGTH_SHORT);
@@ -47,8 +45,6 @@ public class SubmitWaitTimeWindow extends BaseWindow {
 		
 		textViewVenueName.setText(getVenue(getArguments(), getActivity()).getName());
 		
-		// Inflate and set the layout for the dialog.
-		// Pass null as the parent view because it's going in the dialog layout.
 		builder.setView(view);
 		
 		// Add action buttons.
