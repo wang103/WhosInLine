@@ -17,15 +17,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:text="Chipotle Mexican Grill"
         android:textColor="#040404"
         android:paddingLeft="5dp"
         android:paddingTop="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="sans" />
+    
    	<ImageView
        	android:id="@+id/venue_info_image"
+       	android:contentDescription="@string/str_venue_image_description"
        	android:layout_alignParentLeft="true"
        	android:layout_below="@id/venue_info_name"
        	android:layout_marginTop="3dip"
@@ -33,20 +34,22 @@
        	android:layout_width="80dip"
        	android:paddingLeft="5dp"
         android:layout_height="80dip" />
+   	
    	<RatingBar
-            android:id="@+id/venue_info_rating"
-            style="@style/listRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/venue_info_name"
-            android:layout_toRightOf="@id/venue_info_image"
-            android:layout_marginTop="3dip"
-            android:layout_marginLeft="6dip"
-            android:layout_gravity="left"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:rating="4.5"
-            android:stepSize="0.5" />
+        android:id="@+id/venue_info_rating"
+        style="@style/listRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/venue_info_name"
+        android:layout_toRightOf="@id/venue_info_image"
+        android:layout_marginTop="3dip"
+        android:layout_marginLeft="6dip"
+        android:layout_gravity="left"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="4.5"
+        android:stepSize="0.5" />
+   	
    	<TextView
    	    android:id="@+id/venue_info_rating_number"
    	    android:layout_width="wrap_content"
@@ -55,11 +58,11 @@
    	    android:layout_marginLeft="3dip"
    	    android:layout_marginTop="3dip"
    	    android:layout_toRightOf="@id/venue_info_rating"
-   	    android:text="4.5/5.0"
    	    android:textColor="#343434"
    	    android:textSize="12sp"
    	    android:textStyle="italic"
    	    android:typeface="sans" />
+   	
    	<TextView
    	    android:id="@+id/venue_info_review_number"
    	    android:layout_width="wrap_content"
@@ -68,11 +71,11 @@
    	    android:layout_marginLeft="2dip"
    	    android:layout_marginTop="3dip"
    	    android:layout_toRightOf="@id/venue_info_rating_number"
-   	    android:text="(12 reviews)"
    	    android:textColor="#343434"
    	    android:textSize="12sp"
    	    android:typeface="sans"
    	    android:textStyle="italic" />
+   	
    	<TextView
    	    android:id="@+id/venue_info_wait"
    	    android:layout_width="wrap_content"
@@ -81,10 +84,10 @@
    	    android:layout_toRightOf="@id/venue_info_image"
    	    android:layout_marginTop="2dip"
    	    android:layout_marginLeft="6dip"
-   	    android:text="Wait: 15 minutes"
    	    android:textColor="#343434"
    	    android:typeface="sans"
    	    android:textSize="14sp" />
+   	
    	<TextView
    	    android:id="@+id/venue_info_address"
    	    android:layout_width="wrap_content"
@@ -93,10 +96,10 @@
    	    android:layout_toRightOf="@id/venue_info_image"
    	    android:layout_marginTop="2dip"
    	    android:layout_marginLeft="6dip"
-   	    android:text="Address: 528 E Green St #101, Champaign, IL 61820"
    	    android:textColor="#343434"
    	    android:autoLink="map"
    	    android:textSize="14sp" />
+   	
    	<TextView
    	    android:id="@+id/venue_info_distance"
    	    android:layout_width="wrap_content"
@@ -105,10 +108,10 @@
    	    android:layout_toRightOf="@id/venue_info_image"
    	    android:layout_marginTop="2dip"
    	    android:layout_marginLeft="6dip"
-   	    android:text="Distance: 0.79 miles"
    	    android:textColor="#343434"
    	    android:typeface="sans"
    	    android:textSize="14sp" />
+   	
    	<TextView
    	    android:id="@+id/venue_info_phone"
    	    android:layout_width="wrap_content"
@@ -117,11 +120,11 @@
    	    android:layout_toRightOf="@id/venue_info_image"
    	    android:layout_marginTop="2dip"
    	    android:layout_marginLeft="6dip"
-   	    android:text="Phone: (217) 344-0466"
    	    android:textColor="#343434"
    	    android:typeface='sans'
    	    android:textSize="14sp"
    	    android:autoLink="phone" />
+   	
    	 <TextView
    	    android:id="@+id/venue_info_hours"
    	    android:layout_width="wrap_content"
@@ -130,7 +133,6 @@
    	    android:layout_alignParentLeft="true"
    	    android:layout_marginTop="2dip"
    	    android:layout_marginLeft="5dip"
-   	    android:text="Hours today: 11:00 AM to 10:00 PM"
    	    android:textColor="#343434"
    	    android:typeface="sans"
    	    android:textSize="14sp" />
@@ -156,7 +158,8 @@
         android:textStyle="bold"
         android:paddingLeft="6dp"
         android:layout_below="@id/venue_divider1"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true" />
+   	
     <HorizontalScrollView
         android:id="@+id/ticker_scroll_view"
         android:layout_width="wrap_content"
@@ -184,6 +187,7 @@
 	    android:background="@android:color/darker_gray"/>
    	
 	<!-- Review section -->
+	
    	<TextView
    	    android:id="@+id/review_header"
    	    android:layout_width="match_parent"
@@ -193,11 +197,13 @@
    	    android:layout_below="@id/venue_divider2"
    	    android:text="Reviews"
    	    android:textSize="16sp"
-   	    android:textStyle="bold"/>
+   	    android:textStyle="bold" />
+   	
    	<ListView 
    	   	android:id="@+id/review_list"
     	android:layout_width="match_parent"
     	android:layout_below="@id/review_header"
    	    android:layout_height="wrap_content" />
+   	
 </RelativeLayout>
 </ScrollView>

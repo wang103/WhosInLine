@@ -13,14 +13,16 @@ public class FavoriteFragment extends BaseFragment {
 	private int tableNum = 2;
 	
 	private void insertTestData() {
-		HoursSchedule hs = new HoursSchedule("Closed", "Closed", "Closed",
-				"Closed", "Closed", "Closed", "Closed");
+		HoursSchedule hs = new HoursSchedule("11:00 AM to 10:00 PM",
+				"11:00 AM to 10:00 PM", "11:00 AM to 10:00 PM",
+				"11:00 AM to 10:00 PM", "11:00 AM to 10:00 PM",
+				"11:00 AM to 10:00 PM", "11:00 AM to 10:00 PM");
 		
 		Venue venue;
 		
 		venue = new Venue(0, "Chipotle Mexican Grill", "", R.drawable.ic_type_mexican,
 				"Restaurant", 5.0f, 0.12f, 10,
-				"528 E Green St #101, Champaign, IL", "111-111-1111", hs);
+				"528 E Green St #101, Champaign, IL", "(111) 111-1111", hs);
 		dbAccessObj.insertVenue(tableNum, venue);
 	}
 	

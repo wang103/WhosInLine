@@ -13,19 +13,21 @@ public class RecentFragment extends BaseFragment {
 	private int tableNum = 1;
 	
 	private void insertTestData() {
-		HoursSchedule hs = new HoursSchedule("Closed", "Closed", "Closed",
-				"Closed", "Closed", "Closed", "Closed");
+		HoursSchedule hs = new HoursSchedule("11:00 AM to 10:00 PM",
+				"11:00 AM to 10:00 PM", "11:00 AM to 10:00 PM",
+				"11:00 AM to 10:00 PM", "11:00 AM to 10:00 PM",
+				"11:00 AM to 10:00 PM", "11:00 AM to 10:00 PM");
 		
 		Venue venue;
 		
 		venue = new Venue(0, "Cravings Restaurant", "", R.drawable.ic_type_asian,
 				"Restaurant", 4.0f, 0.15f, 15,
-				"603 S Wright St, Champaign, IL", "111-111-1111", hs);
+				"603 S Wright St, Champaign, IL", "(111) 111-1111", hs);
 		dbAccessObj.insertVenue(tableNum, venue);
 		
 		venue = new Venue(1, "Chipotle Mexican Grill", "", R.drawable.ic_type_mexican,
 				"Restaurant", 5.0f, 0.12f, 10,
-				"528 E Green St #101, Champaign, IL", "111-111-1111", hs);
+				"528 E Green St #101, Champaign, IL", "(111) 111-1111", hs);
 		dbAccessObj.insertVenue(tableNum, venue);
 	}
 	
