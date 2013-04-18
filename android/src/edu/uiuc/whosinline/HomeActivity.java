@@ -12,6 +12,7 @@ import edu.uiuc.whosinline.windows.SubmitWaitTimeWindow;
 import edu.uiuc.whosinline.windows.WriteReviewWindow;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.AlertDialog;
@@ -24,6 +25,7 @@ import android.support.v4.view.ViewPager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +36,7 @@ public class HomeActivity extends FragmentActivity {
 
 	private FragmentManager fragmentManager;
 	private ViewPager viewPager;
+	private boolean exit_on_back = true;
 
 	final static public String INTENT_TABLE_NUM = "intent_table_num";
 	final static public String INTENT_VENUE_ID = "intent_venue_id";
@@ -47,6 +50,8 @@ public class HomeActivity extends FragmentActivity {
 	final static private String TAG_CHAT_WINDOW = "chat";
 	final static private String TAG_WRITE_REVIEW_WINDOW = "write_review";
 	final static private String TAG_FAVORITE_WINDOW = "favorite";
+
+	final static private int RESULT_SETTINGS = 1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,16 +99,26 @@ public class HomeActivity extends FragmentActivity {
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
- 
         case R.id.menu_settings:
             Intent i = new Intent(this, SettingsActivity.class);
-            startActivity(i);
+            startActivityForResult(i, RESULT_SETTINGS);
             break;
- 
         }
- 
         return true;
     }
+	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+        case RESULT_SETTINGS:
+            // get the boolean value from the checkbox
+        	SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        	this.exit_on_back = sharedPrefs.getBoolean("prefexit", true);
+            break;
+        }
+    }
+	
 	
 	/**
 	 * Sets up the action bar for this activity by creating three tabs.
@@ -177,18 +192,24 @@ public class HomeActivity extends FragmentActivity {
 	
 	@Override
 	public void onBackPressed() {
-		// Confirm if user really want to exit the app.
-		Builder alertBuilder = new AlertDialog.Builder(this);
-		alertBuilder.setMessage("Do you want to exit the app?");
-		alertBuilder.setCancelable(false);
-		alertBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				HomeActivity.this.finish();
-			}
-		});
-		alertBuilder.setNegativeButton("NO", null);
-		alertBuilder.show();
+		if(exit_on_back){
+			// Confirm if user really want to exit the app.
+			Builder alertBuilder = new AlertDialog.Builder(this);
+			alertBuilder.setMessage("Do you want to exit the app?");
+			alertBuilder.setCancelable(false);
+			alertBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					HomeActivity.this.finish();
+				}
+			});
+			alertBuilder.setNegativeButton("NO", null);
+			alertBuilder.show();
+		}
+		else
+		{
+			HomeActivity.this.finish();
+		}
 	}
 	
 	public void onProfileButtonClick(View v) {
