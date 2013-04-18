@@ -8,6 +8,7 @@ import edu.uiuc.whosinline.fragments.NearbyFragment;
 import edu.uiuc.whosinline.fragments.RecentFragment;
 import edu.uiuc.whosinline.listeners.HomeTabsListener;
 import edu.uiuc.whosinline.listeners.MenuItemListener;
+import edu.uiuc.whosinline.listeners.SearchQueryListener;
 import edu.uiuc.whosinline.windows.ChatWindow;
 import edu.uiuc.whosinline.windows.FavoriteWindow;
 import edu.uiuc.whosinline.windows.SubmitWaitTimeWindow;
@@ -44,6 +45,7 @@ public class HomeActivity extends FragmentActivity {
 	final static public String INTENT_CHAT_TYPE = "intent_chat_type";
 	final static public String INTENT_TABLE_NUM = "intent_table_num";
 	final static public String INTENT_VENUE_ID = "intent_venue_id";
+	final static public String INTENT_QUERY = "intent_query";
 
 	final static private String STATE_TAB = "state_tab";
 	final static private String STRING_TAB_NEARBY = "NEARBY";
@@ -56,24 +58,24 @@ public class HomeActivity extends FragmentActivity {
 	final static public String TAG_FAVORITE_WINDOW = "favorite";
 
 	final static private int RESULT_SETTINGS = 1;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		// Set the view for this activity.
 		setContentView(R.layout.activity_main);
-		
+
 		fragmentManager = getSupportFragmentManager();
-		
+
 		// Set up the action bar with tabs.
 		setUpActionBar(savedInstanceState);
 	}
-	
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		
+
 		// Save the current tab.
 		ActionBar actionBar = getActionBar();
 		Tab curTab = actionBar.getSelectedTab();
@@ -92,54 +94,53 @@ public class HomeActivity extends FragmentActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
-		
+
 		menu.findItem(R.id.menu_chat).setOnMenuItemClickListener(new MenuItemListener(this));
-		
+
 		// Associate searchable configuration with the SearchView.
-	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	    SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+		searchView.setOnQueryTextListener(new SearchQueryListener(this, viewPager, fragmentManager));
 		return true;
 	}
-	
+
 	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.menu_settings:
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivityForResult(i, RESULT_SETTINGS);
-            break;
-        }
-        return true;
-    }
-	
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_settings:
+			Intent i = new Intent(this, SettingsActivity.class);
+			startActivityForResult(i, RESULT_SETTINGS);
+			break;
+		}
+		return true;
+	}
+
 	@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        
-        switch (requestCode) {
-        case RESULT_SETTINGS:
-            // Get the boolean value from the checkbox.
-        	SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        	this.exit_on_back = sharedPrefs.getBoolean("prefexit", true);
-            break;
-        }
-    }
-	
-	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		switch (requestCode) {
+		case RESULT_SETTINGS:
+			// Get the boolean value from the checkbox.
+			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+			this.exit_on_back = sharedPrefs.getBoolean("prefexit", true);
+			break;
+		}
+	}
+
 	/**
 	 * Sets up the action bar for this activity by creating three tabs.
 	 * 
 	 * @param savedInstanceState a {@link Bundle} object.
 	 */
 	private void setUpActionBar(Bundle savedInstanceState){
-		
+
 		// Get rid of the icon and app title in the action bar.
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowTitleEnabled(false);
-		
+
 		// Set up tabs.
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -147,11 +148,11 @@ public class HomeActivity extends FragmentActivity {
 		Tab nearbyTab = actionBar.newTab();
 		nearbyTab.setText(STRING_TAB_NEARBY);
 		nearbyTab.setIcon(R.drawable.ic_tab_nearby);
-		
+
 		Tab recentTab = actionBar.newTab();
 		recentTab.setText(STRING_TAB_RECENT);
 		recentTab.setIcon(R.drawable.ic_tab_recent);
-		
+
 		Tab favoriteTab = actionBar.newTab();
 		favoriteTab.setText(STRING_TAB_FAVORITE);
 		favoriteTab.setIcon(R.drawable.ic_tab_favorite);
@@ -160,19 +161,19 @@ public class HomeActivity extends FragmentActivity {
 		Fragment nearbyFragment = new NearbyFragment();
 		Fragment recentFragment = new RecentFragment();
 		Fragment favoriteFragment = new FavoriteFragment();
-		
+
 		// Add the fragments to the pager adapter.
 		SwipePagerAdapter pagerAdapter = new SwipePagerAdapter(fragmentManager);
 		pagerAdapter.addFragment(nearbyFragment);
 		pagerAdapter.addFragment(recentFragment);
 		pagerAdapter.addFragment(favoriteFragment);
-		
+
 		// Set the adapter to the ViewPager.
 		viewPager = (ViewPager) findViewById(R.id.pager_view);
 		viewPager.setAdapter(pagerAdapter);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setCurrentItem(0);
-		
+
 		// Set the swipe listener.
 		viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
@@ -180,7 +181,7 @@ public class HomeActivity extends FragmentActivity {
 				getActionBar().setSelectedNavigationItem(position);
 			}
 		});
-		
+
 		// Set the tab listeners to listen for clicks.
 		nearbyTab.setTabListener(new HomeTabsListener(viewPager));
 		recentTab.setTabListener(new HomeTabsListener(viewPager));
@@ -197,7 +198,7 @@ public class HomeActivity extends FragmentActivity {
 		actionBar.addTab(recentTab, selectedTabNum == 1);
 		actionBar.addTab(favoriteTab, selectedTabNum == 2);
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		if(exit_on_back){
@@ -219,7 +220,7 @@ public class HomeActivity extends FragmentActivity {
 			HomeActivity.this.finish();
 		}
 	}
-	
+
 	public void refreshList(int tableNum) {
 		BaseFragment fragment = (BaseFragment) fragmentManager.findFragmentByTag(
 				"android:switcher:" + R.id.pager_view + ":" + tableNum);
@@ -267,7 +268,7 @@ public class HomeActivity extends FragmentActivity {
 		} else {
 			tableNum = 2;
 		}
-		
+
 		SubmitWaitTimeWindow windowFrag = new SubmitWaitTimeWindow();
 		Bundle extras = new Bundle();
 		extras.putInt(INTENT_TABLE_NUM, tableNum);
@@ -292,7 +293,7 @@ public class HomeActivity extends FragmentActivity {
 		} else {
 			tableNum = 2;
 		}
-		
+
 		ChatWindow windowFrag = new ChatWindow();
 		Bundle extras = new Bundle();
 		extras.putBoolean(INTENT_CHAT_TYPE, true);
@@ -318,7 +319,7 @@ public class HomeActivity extends FragmentActivity {
 		} else {
 			tableNum = 2;
 		}
-		
+
 		WriteReviewWindow windowFrag = new WriteReviewWindow();
 		Bundle extras = new Bundle();
 		extras.putInt(INTENT_TABLE_NUM, tableNum);
@@ -343,7 +344,7 @@ public class HomeActivity extends FragmentActivity {
 		} else {
 			tableNum = 2;
 		}
-		
+
 		FavoriteWindow windowFrag = new FavoriteWindow();
 		Bundle extras = new Bundle();
 		extras.putInt(INTENT_TABLE_NUM, tableNum);

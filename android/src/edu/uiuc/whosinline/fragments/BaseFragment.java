@@ -11,7 +11,7 @@ public abstract class BaseFragment extends ListFragment {
 	
 	protected SlideExpandableListAdapter adapter;
 	protected DatabaseAccessObj dbAccessObj;
-	
+		
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

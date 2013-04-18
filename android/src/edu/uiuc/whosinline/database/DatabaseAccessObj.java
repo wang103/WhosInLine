@@ -75,12 +75,23 @@ public class DatabaseAccessObj {
 	
 	public Venue getVenue(int tableNum, String name) {
 		String tableName = getTableName(tableNum);
-		String statement = "SELECT * FROM " + tableName +
-				" WHERE " + SQLiteHelperVenues.COLUMN_VENUE_NAME + "='" +
-				name + "'";
+		String statement = "SELECT * FROM " + tableName + " WHERE "
+				+ SQLiteHelperVenues.COLUMN_VENUE_NAME + "='" + name + "'";
 		Cursor cursor = database.rawQuery(statement, null);
 		if (cursor.moveToFirst()) {
 			return cursorToVenue(cursor);
+		}
+		return null;
+	}
+	
+	public Cursor getSearchResults(int tableNum, String query) {
+		String tableName = getTableName(tableNum);
+		String temp = "%" + query.replace(' ', '%')  + "%";
+		String statement = "SELECT * FROM " + tableName + " WHERE "
+				+ SQLiteHelperVenues.COLUMN_VENUE_NAME + " like '" + temp + "'";
+		Cursor cursor = database.rawQuery(statement, null);
+		if (cursor.moveToFirst()) {
+			return cursor;
 		}
 		return null;
 	}
