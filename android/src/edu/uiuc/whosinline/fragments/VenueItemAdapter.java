@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 public class VenueItemAdapter extends CursorAdapter {
 
@@ -27,19 +30,35 @@ public class VenueItemAdapter extends CursorAdapter {
 				SQLiteHelperVenues.COLUMN_VENUE_IMAGE_RESOURCE));
 		String venueName = cursor.getString(cursor.getColumnIndex(
 				SQLiteHelperVenues.COLUMN_VENUE_NAME));
+		float rating = cursor.getFloat(cursor.getColumnIndex(
+				SQLiteHelperVenues.COLUMN_VENUE_RATING));
+		int waitMinutes = cursor.getInt(cursor.getColumnIndex(
+				SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN));
+		String venueType = cursor.getString(cursor.getColumnIndex(
+				SQLiteHelperVenues.COLUMN_VENUE_TYPE));
+		float distance = cursor.getFloat(cursor.getColumnIndex(
+				SQLiteHelperVenues.COLUMN_VENUE_DISTANCE));
 		
-		// Fields from the database.
-				String[] from = new String[] {SQLiteHelperVenues.COLUMN_VENUE_NAME,
-						SQLiteHelperVenues.COLUMN_VENUE_IMAGE_RESOURCE,
-						SQLiteHelperVenues.COLUMN_VENUE_TYPE,
-						SQLiteHelperVenues.COLUMN_VENUE_RATING,
-						SQLiteHelperVenues.COLUMN_VENUE_DISTANCE,
-						SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN};
-				
-				// Fields on the UI to map.
-				int[] to = new int[] {R.id.cell_venue_name, R.id.cell_venue_image,
-						R.id.cell_venue_type, R.id.cell_rating_number,
-						R.id.cell_distance, R.id.cell_wait_minutes};
+		ImageView venueImageView = (ImageView) view.findViewById(R.id.cell_venue_image);
+		venueImageView.setImageResource(imageResource);
+		
+		TextView nameTextView = (TextView) view.findViewById(R.id.cell_venue_name);
+		nameTextView.setText(venueName);
+		
+		RatingBar ratingBar = (RatingBar) view.findViewById(R.id.cell_rating);
+		ratingBar.setRating(rating);
+		
+		TextView ratingTextView = (TextView) view.findViewById(R.id.cell_rating_number);
+		ratingTextView.setText(rating + "/5.0");
+		
+		TextView waitTextView = (TextView) view.findViewById(R.id.cell_wait_minutes);
+		waitTextView.setText(waitMinutes + " minutes wait");
+		
+		TextView typeTextView = (TextView) view.findViewById(R.id.cell_venue_type);
+		typeTextView.setText(venueType);
+		
+		TextView distanceTextView = (TextView) view.findViewById(R.id.cell_distance);
+		distanceTextView.setText(distance + " miles");
 	}
 
 	@Override
