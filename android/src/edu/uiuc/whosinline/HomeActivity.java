@@ -7,6 +7,7 @@ import edu.uiuc.whosinline.fragments.FavoriteFragment;
 import edu.uiuc.whosinline.fragments.NearbyFragment;
 import edu.uiuc.whosinline.fragments.RecentFragment;
 import edu.uiuc.whosinline.listeners.HomeTabsListener;
+import edu.uiuc.whosinline.listeners.MenuItemListener;
 import edu.uiuc.whosinline.windows.ChatWindow;
 import edu.uiuc.whosinline.windows.FavoriteWindow;
 import edu.uiuc.whosinline.windows.SubmitWaitTimeWindow;
@@ -40,6 +41,7 @@ public class HomeActivity extends FragmentActivity {
 	private ViewPager viewPager;
 	private boolean exit_on_back = true;
 
+	final static public String INTENT_CHAT_TYPE = "intent_chat_type";
 	final static public String INTENT_TABLE_NUM = "intent_table_num";
 	final static public String INTENT_VENUE_ID = "intent_venue_id";
 
@@ -48,10 +50,10 @@ public class HomeActivity extends FragmentActivity {
 	final static private String STRING_TAB_RECENT = "RECENT";
 	final static private String STRING_TAB_FAVORITE = "FAVORITE";
 
-	final static private String TAG_SUBMIT_WAIT_TIME_WINDOW = "submit_wait_time";
-	final static private String TAG_CHAT_WINDOW = "chat";
-	final static private String TAG_WRITE_REVIEW_WINDOW = "write_review";
-	final static private String TAG_FAVORITE_WINDOW = "favorite";
+	final static public String TAG_SUBMIT_WAIT_TIME_WINDOW = "submit_wait_time";
+	final static public String TAG_CHAT_WINDOW = "chat";
+	final static public String TAG_WRITE_REVIEW_WINDOW = "write_review";
+	final static public String TAG_FAVORITE_WINDOW = "favorite";
 
 	final static private int RESULT_SETTINGS = 1;
 	
@@ -91,10 +93,13 @@ public class HomeActivity extends FragmentActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		
-		// Associate searchable configuration with the SearchView
+		menu.findItem(R.id.menu_chat).setOnMenuItemClickListener(new MenuItemListener(this));
+		
+		// Associate searchable configuration with the SearchView.
 	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 	    SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+	    
 		return true;
 	}
 	
@@ -112,9 +117,10 @@ public class HomeActivity extends FragmentActivity {
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        
         switch (requestCode) {
         case RESULT_SETTINGS:
-            // get the boolean value from the checkbox
+            // Get the boolean value from the checkbox.
         	SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         	this.exit_on_back = sharedPrefs.getBoolean("prefexit", true);
             break;
@@ -289,6 +295,7 @@ public class HomeActivity extends FragmentActivity {
 		
 		ChatWindow windowFrag = new ChatWindow();
 		Bundle extras = new Bundle();
+		extras.putBoolean(INTENT_CHAT_TYPE, true);
 		extras.putInt(INTENT_TABLE_NUM, tableNum);
 		extras.putLong(INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);

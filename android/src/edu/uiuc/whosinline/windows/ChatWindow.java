@@ -1,5 +1,6 @@
 package edu.uiuc.whosinline.windows;
 
+import edu.uiuc.whosinline.HomeActivity;
 import edu.uiuc.whosinline.R;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 public class ChatWindow extends BaseWindow {
 
+	private TextView textViewPrompt;
 	private TextView textViewVenueName;
 	private TextView textViewChat;
 	private EditText editTextInput;
@@ -41,12 +43,21 @@ public class ChatWindow extends BaseWindow {
 		LayoutInflater inflator = getActivity().getLayoutInflater();
 		View view = inflator.inflate(R.layout.window_chat_venue, null);
 		
+		textViewPrompt = (TextView) view.findViewById(R.id.chat_prompt_textview);
 		textViewVenueName = (TextView) view.findViewById(R.id.venue_name_textview);
 		textViewChat = (TextView) view.findViewById(R.id.chat_textview);
 		editTextInput = (EditText) view.findViewById(R.id.chat_edittext);
 		sendButton = (Button) view.findViewById(R.id.chat_send_button);
 		
-		textViewVenueName.setText(getVenue(getArguments(), getActivity()).getName());
+		Bundle extras = getArguments();
+		boolean chatType = extras.getBoolean(HomeActivity.INTENT_CHAT_TYPE);
+		if (chatType) {
+			textViewVenueName.setText(getVenue(extras, getActivity()).getName());
+		}
+		else {
+			textViewPrompt.setText("You are currently chatting with\npeople around you.");
+		}
+		
 		textViewChat.setMovementMethod(new ScrollingMovementMethod());
 		
 		builder.setView(view);

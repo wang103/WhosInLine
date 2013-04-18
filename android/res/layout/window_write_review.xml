@@ -43,6 +43,7 @@
 	android:hint="@string/hint_content"
 	android:lines="4"
 	android:textSize="18sp"
+	android:gravity="top"
 	android:layout_below="@+id/review_ratingbar"
 	android:layout_alignParentLeft="true" />
 

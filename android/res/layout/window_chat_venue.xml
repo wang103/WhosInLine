@@ -5,10 +5,12 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	
 <TextView
-	android:id="@+id/widget51"
+	android:id="@+id/chat_prompt_textview"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:text="@string/str_prompt_chat_venue"
+	android:maxLines="2"
+	android:gravity="center"
 	android:layout_alignParentTop="true"
 	android:layout_centerHorizontal="true" />
 
@@ -16,7 +18,7 @@
 	android:id="@+id/venue_name_textview"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:layout_below="@+id/widget51"
+	android:layout_below="@+id/chat_prompt_textview"
 	android:layout_centerHorizontal="true" />
 
 <TextView
