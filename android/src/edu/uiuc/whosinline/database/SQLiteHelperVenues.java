@@ -20,9 +20,17 @@ public class SQLiteHelperVenues extends SQLiteOpenHelper {
 	public static final String COLUMN_VENUE_DISTANCE = "distance";
 	public static final String COLUMN_VENUE_WAIT_MIN = "wait_minutes";
 	public static final String COLUMN_VENUE_ADDRESS = "address";
-
+	public static final String COLUMN_VENUE_PHONE = "phone";
+	public static final String COLUMN_VENUE_HOURS_MONDAY = "hours_monday";
+	public static final String COLUMN_VENUE_HOURS_TUESDAY = "hours_tuesday";
+	public static final String COLUMN_VENUE_HOURS_WEDNESDAY = "hours_wednesday";
+	public static final String COLUMN_VENUE_HOURS_THURSDAY = "hours_thursday";
+	public static final String COLUMN_VENUE_HOURS_FRIDAY = "hours_friday";
+	public static final String COLUMN_VENUE_HOURS_SATURDAY = "hours_saturday";
+	public static final String COLUMN_VENUE_HOURS_SUNDAY = "hours_sunday";
+	
 	private static final String DATABASE_NAME = "whosinline.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 	
 	public SQLiteHelperVenues(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -39,7 +47,15 @@ public class SQLiteHelperVenues extends SQLiteOpenHelper {
 				+ COLUMN_VENUE_RATING + " tinyint(1) not null, "
 				+ COLUMN_VENUE_DISTANCE + " float not null, "
 				+ COLUMN_VENUE_WAIT_MIN + " int not null, "
-				+ COLUMN_VENUE_ADDRESS + " text not null);";
+				+ COLUMN_VENUE_ADDRESS + " text not null, "
+				+ COLUMN_VENUE_PHONE + " text not null, "
+				+ COLUMN_VENUE_HOURS_MONDAY + " text not null, "
+				+ COLUMN_VENUE_HOURS_TUESDAY + " text not null, "
+				+ COLUMN_VENUE_HOURS_WEDNESDAY + " text not null, "
+				+ COLUMN_VENUE_HOURS_THURSDAY + " text not null, "
+				+ COLUMN_VENUE_HOURS_FRIDAY + " text not null, "
+				+ COLUMN_VENUE_HOURS_SATURDAY + " text not null, "
+				+ COLUMN_VENUE_HOURS_SUNDAY + " text not null);";
 
 		db.execSQL(databaseCreateStat);
 	}

@@ -3,6 +3,7 @@ package edu.uiuc.whosinline.database;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.uiuc.whosinline.data.HoursSchedule;
 import edu.uiuc.whosinline.data.Venue;
 import android.content.ContentValues;
 import android.content.Context;
@@ -22,7 +23,15 @@ public class DatabaseAccessObj {
 			SQLiteHelperVenues.COLUMN_VENUE_RATING,
 			SQLiteHelperVenues.COLUMN_VENUE_DISTANCE,
 			SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN,
-			SQLiteHelperVenues.COLUMN_VENUE_ADDRESS};
+			SQLiteHelperVenues.COLUMN_VENUE_ADDRESS,
+			SQLiteHelperVenues.COLUMN_VENUE_PHONE,
+			SQLiteHelperVenues.COLUMN_VENUE_HOURS_MONDAY,
+			SQLiteHelperVenues.COLUMN_VENUE_HOURS_TUESDAY,
+			SQLiteHelperVenues.COLUMN_VENUE_HOURS_WEDNESDAY,
+			SQLiteHelperVenues.COLUMN_VENUE_HOURS_THURSDAY,
+			SQLiteHelperVenues.COLUMN_VENUE_HOURS_FRIDAY,
+			SQLiteHelperVenues.COLUMN_VENUE_HOURS_SATURDAY,
+			SQLiteHelperVenues.COLUMN_VENUE_HOURS_SUNDAY};
 
 	public DatabaseAccessObj(Context context) {
 		dbHelper = new SQLiteHelperVenues(context);
@@ -94,6 +103,14 @@ public class DatabaseAccessObj {
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_DISTANCE, venue.getDistance());
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_WAIT_MIN, venue.getWaitMinutes());
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_ADDRESS, venue.getAddress());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_PHONE, venue.getPhoneNumber());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_HOURS_MONDAY, venue.getHours().getHoursMonday());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_HOURS_TUESDAY, venue.getHours().getHoursTuesday());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_HOURS_WEDNESDAY, venue.getHours().getHoursWednesday());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_HOURS_THURSDAY, venue.getHours().getHoursThursday());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_HOURS_FRIDAY, venue.getHours().getHoursFriday());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_HOURS_SATURDAY, venue.getHours().getHoursSaturday());
+		values.put(SQLiteHelperVenues.COLUMN_VENUE_HOURS_SUNDAY, venue.getHours().getHoursSunday());
 
 		String tableName = getTableName(tableNum);
 
@@ -148,10 +165,14 @@ public class DatabaseAccessObj {
 	 * @return a {@link Venue} object.
 	 */
 	public static Venue cursorToVenue(Cursor cursor) {
+		HoursSchedule hs = new HoursSchedule(cursor.getString(10),
+				cursor.getString(11), cursor.getString(12), cursor.getString(13),
+				cursor.getString(14), cursor.getString(15), cursor.getString(16));
+		
 		Venue venue = new Venue(cursor.getInt(0), cursor.getString(1),
 					cursor.getString(2), cursor.getInt(3), cursor.getString(4),
 					cursor.getInt(5), cursor.getFloat(6), cursor.getInt(7),
-					cursor.getString(8));
+					cursor.getString(8), cursor.getString(9), hs);
 		return venue;
 	}
 }

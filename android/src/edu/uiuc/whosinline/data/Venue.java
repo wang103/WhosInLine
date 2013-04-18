@@ -7,14 +7,16 @@ public class Venue {
 	private String imagePath;
 	private int imageResource;
 	private String type;
-	private int rating;
+	private float rating;
 	private float distance;
 	private int waitMinutes;
 	private String address;
+	private String phoneNumber;
+	private HoursSchedule hours;
 	
 	public Venue(int id, String name, String imagePath, int imageResource,
-			String type, int rating, float distance, int waitMinutes,
-			String address) {
+			String type, float rating, float distance, int waitMinutes,
+			String address, String phoneNumber, HoursSchedule hours) {
 		this.id = id;
 		this.name = name;
 		this.imagePath = imagePath;
@@ -24,6 +26,8 @@ public class Venue {
 		this.distance = distance;
 		this.waitMinutes = waitMinutes;
 		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.hours = hours;
 	}
 	
 	public int getId() {
@@ -66,11 +70,11 @@ public class Venue {
 		this.type = type;
 	}
 	
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
 	
-	public void setRating(int rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 	
@@ -96,5 +100,21 @@ public class Venue {
 	
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	public HoursSchedule getHours() {
+		return hours;
+	}
+	
+	public void setHours(HoursSchedule hours) {
+		this.hours = hours;
 	}
 }
