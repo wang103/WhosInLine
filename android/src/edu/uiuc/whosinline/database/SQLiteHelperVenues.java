@@ -30,7 +30,7 @@ public class SQLiteHelperVenues extends SQLiteOpenHelper {
 	public static final String COLUMN_VENUE_HOURS_SUNDAY = "hours_sunday";
 	
 	private static final String DATABASE_NAME = "whosinline.db";
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 1;
 	
 	public SQLiteHelperVenues(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,7 +44,7 @@ public class SQLiteHelperVenues extends SQLiteOpenHelper {
 				+ COLUMN_VENUE_IMAGE_PATH + " text not null, "
 				+ COLUMN_VENUE_IMAGE_RESOURCE + " int not null, "
 				+ COLUMN_VENUE_TYPE + " tinytext not null, "
-				+ COLUMN_VENUE_RATING + " tinyint(1) not null, "
+				+ COLUMN_VENUE_RATING + " float(2,1) not null, "
 				+ COLUMN_VENUE_DISTANCE + " float not null, "
 				+ COLUMN_VENUE_WAIT_MIN + " int not null, "
 				+ COLUMN_VENUE_ADDRESS + " text not null, "

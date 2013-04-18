@@ -170,7 +170,7 @@ public class DatabaseAccessObj {
 		
 		Venue venue = new Venue(cursor.getInt(0), cursor.getString(1),
 					cursor.getString(2), cursor.getInt(3), cursor.getString(4),
-					cursor.getInt(5), cursor.getFloat(6), cursor.getInt(7),
+					cursor.getFloat(5), cursor.getFloat(6), cursor.getInt(7),
 					cursor.getString(8), cursor.getString(9), hs);
 		return venue;
 	}
