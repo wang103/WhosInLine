@@ -1,8 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
 
+<RelativeLayout
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+<TextView
+	android:id="@+id/favorite_prompt1"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_alignParentTop="true"
+	android:layout_centerHorizontal="true" />
+
+<TextView
+	android:id="@+id/venue_name_textview"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@+id/favorite_prompt1"
+	android:layout_centerHorizontal="true" />
+
+<TextView
+	android:id="@+id/favorite_prompt2"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@+id/venue_name_textview"
+	android:layout_centerHorizontal="true" />
+
+<LinearLayout 
+	style="?android:attr/buttonBarStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="0dp"
+    android:measureWithLargestChild="true"
+   	android:layout_below="@+id/favorite_prompt2" >
+
+<Button 
+	android:id="@+id/negative_button"
+    style="?android:attr/buttonBarButtonStyle"
+    android:layout_height="wrap_content"
+    android:layout_width="0dp"
+    android:layout_weight="1.0"
+    android:text="@string/button_no" />
+
+<Button 
+	android:id="@+id/positive_button"
+	style="?android:attr/buttonBarButtonStyle"
+	android:layout_height="wrap_content"
+	android:layout_width="0dp"
+	android:layout_weight="1.0"
+	android:text="@string/button_yes" />
 </LinearLayout>
+
+</RelativeLayout>

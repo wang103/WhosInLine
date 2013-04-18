@@ -1,7 +1,5 @@
 package edu.uiuc.whosinline.fragments;
 
-import java.util.List;
-
 import edu.uiuc.whosinline.R;
 import edu.uiuc.whosinline.data.Venue;
 import android.os.Bundle;
@@ -31,11 +29,9 @@ public class RecentFragment extends BaseFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		List<Venue> venues = dbAccessObj.getAllVenues(tableNum);
-		for (Venue venue : venues) {
-			dbAccessObj.deleteVenue(tableNum, venue);
+		if (dbAccessObj.getTableRowCount(tableNum) == 0) {
+			insertTestData();
 		}
-		insertTestData();
 		
 		fillData(tableNum);
 	}

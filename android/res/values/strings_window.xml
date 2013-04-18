@@ -3,6 +3,8 @@
     
     <string name="button_positive">Submit</string>
     <string name="button_negative">Cancel</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
     <string name="button_send">send</string>
     
     <string name="str_prompt_wait">How long have you waited at</string>

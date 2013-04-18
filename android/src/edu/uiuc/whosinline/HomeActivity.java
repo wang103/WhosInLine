@@ -1,6 +1,7 @@
 package edu.uiuc.whosinline;
 
 import edu.uiuc.whosinline.adapters.SwipePagerAdapter;
+import edu.uiuc.whosinline.database.DatabaseAccessObj;
 import edu.uiuc.whosinline.fragments.BaseFragment;
 import edu.uiuc.whosinline.fragments.FavoriteFragment;
 import edu.uiuc.whosinline.fragments.NearbyFragment;
@@ -24,6 +25,7 @@ import android.support.v4.view.ViewPager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteCursor;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
@@ -176,13 +178,21 @@ public class HomeActivity extends FragmentActivity {
 		alertBuilder.show();
 	}
 	
+	public void refreshList(int tableNum) {
+		BaseFragment fragment = (BaseFragment) fragmentManager.findFragmentByTag(
+				"android:switcher:" + R.id.pager_view + ":" + tableNum);
+		fragment.fillData(tableNum);
+	}
+
 	public void onProfileButtonClick(View v) {
 		int curItem = viewPager.getCurrentItem();
 		BaseFragment fragment = (BaseFragment) fragmentManager.findFragmentByTag(
 				"android:switcher:" + R.id.pager_view + ":" + curItem);
 		ListView lv = fragment.getListView();
 		int tableNum;
-		long venueID = lv.getPositionForView(v);
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -205,7 +215,9 @@ public class HomeActivity extends FragmentActivity {
 				"android:switcher:" + R.id.pager_view + ":" + curItem);
 		ListView lv = fragment.getListView();
 		int tableNum;
-		long venueID = lv.getPositionForView(v);
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -228,7 +240,9 @@ public class HomeActivity extends FragmentActivity {
 				"android:switcher:" + R.id.pager_view + ":" + curItem);
 		ListView lv = fragment.getListView();
 		int tableNum;
-		long venueID = lv.getPositionForView(v);
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -251,7 +265,9 @@ public class HomeActivity extends FragmentActivity {
 				"android:switcher:" + R.id.pager_view + ":" + curItem);
 		ListView lv = fragment.getListView();
 		int tableNum;
-		long venueID = lv.getPositionForView(v);
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -274,7 +290,9 @@ public class HomeActivity extends FragmentActivity {
 				"android:switcher:" + R.id.pager_view + ":" + curItem);
 		ListView lv = fragment.getListView();
 		int tableNum;
-		long venueID = lv.getPositionForView(v);
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {

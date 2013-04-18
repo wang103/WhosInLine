@@ -1,7 +1,5 @@
 package edu.uiuc.whosinline.fragments;
 
-import java.util.List;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -172,11 +170,9 @@ public class NearbyFragment extends BaseFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		List<Venue> venues = dbAccessObj.getAllVenues(tableNum);
-		for (Venue venue : venues) {
-			dbAccessObj.deleteVenue(tableNum, venue);
+		if (dbAccessObj.getTableRowCount(tableNum) == 0) {
+			insertTestData();
 		}
-		insertTestData();
 		
 		fillData(tableNum);
 	}

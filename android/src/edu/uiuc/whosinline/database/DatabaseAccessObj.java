@@ -8,7 +8,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class DatabaseAccessObj {
 
@@ -50,10 +49,31 @@ public class DatabaseAccessObj {
 		String tableName = getTableName(tableNum);
 		String statement = "SELECT * FROM " + tableName +
 				" WHERE " + SQLiteHelperVenues.COLUMN_ID + "=" + id;
-		Log.d("CS465", statement);
+		Cursor cursor = database.rawQuery(statement, null);
+		if (cursor.moveToFirst()) {
+			return cursorToVenue(cursor);
+		}
+		return null;
+	}
+	
+	public Venue getVenue(int tableNum, String name) {
+		String tableName = getTableName(tableNum);
+		String statement = "SELECT * FROM " + tableName +
+				" WHERE " + SQLiteHelperVenues.COLUMN_VENUE_NAME + "='" +
+				name + "'";
+		Cursor cursor = database.rawQuery(statement, null);
+		if (cursor.moveToFirst()) {
+			return cursorToVenue(cursor);
+		}
+		return null;
+	}
+	
+	public int getTableRowCount(int tableNum) {
+		String tableName = getTableName(tableNum);
+		String statement = "SELECT Count(*) FROM " + tableName;
 		Cursor cursor = database.rawQuery(statement, null);
 		cursor.moveToFirst();
-		return cursorToVenue(cursor);
+		return cursor.getInt(0);
 	}
 	
 	/**
@@ -127,7 +147,7 @@ public class DatabaseAccessObj {
 	 * @param cursor a {@link Cursor} object.
 	 * @return a {@link Venue} object.
 	 */
-	private Venue cursorToVenue(Cursor cursor) {
+	public static Venue cursorToVenue(Cursor cursor) {
 		Venue venue = new Venue(cursor.getInt(0), cursor.getString(1),
 					cursor.getString(2), cursor.getInt(3), cursor.getString(4),
 					cursor.getInt(5), cursor.getFloat(6), cursor.getInt(7),

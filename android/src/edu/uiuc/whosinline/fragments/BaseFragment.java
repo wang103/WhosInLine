@@ -13,13 +13,13 @@ public abstract class BaseFragment extends ListFragment {
 	
 	protected SlideExpandableListAdapter adapter;
 	protected DatabaseAccessObj dbAccessObj;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		dbAccessObj = new DatabaseAccessObj(getActivity());
-		dbAccessObj.open();		
+		dbAccessObj.open();
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public abstract class BaseFragment extends ListFragment {
 	 * 
 	 * @param tableNum table number for the database access.
 	 */
-	protected void fillData(int tableNum) {
+	public void fillData(int tableNum) {
 		
 		// Fields from the database.
 		String[] from = new String[] {SQLiteHelperVenues.COLUMN_VENUE_NAME,
@@ -48,7 +48,7 @@ public abstract class BaseFragment extends ListFragment {
 
 		adapter = new SlideExpandableListAdapter(tempAdapter, R.id.cell_id,
 				R.id.expandable);
-		
+
 		setListAdapter(adapter);
 	}
 	
