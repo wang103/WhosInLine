@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:title="General">
+        <CheckBoxPreference 
+            android:title="Confirm exit"
+            android:summary="Show confirm dialog before exiting"
+            android:key="prefexit"
+        	android:defaultValue="true" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Notifications">
+        <CheckBoxPreference
+            android:title="Notifications"
+            android:summary="Show a notification when there is a special event occuring at one of your favorite venues"
+            android:defaultValue="false" />
+        <CheckBoxPreference 
+            android:title="Vibrate"
+            android:summary="Vibrate when a notification arrives"
+            android:defaultValue="false" />
+        <CheckBoxPreference
+            android:title="Light"
+            android:summary="Blink the status light when a notification arrives"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Privacy" >
+        <CheckBoxPreference
+            android:title="Post anonymously"
+            android:summary="Always post reviews and chat anonymously"
+            android:defaultValue="true" />
+        <EditTextPreference
+            android:title="Clear history"
+            android:summary="Clear your recent activity" />
+    </PreferenceCategory>
+</PreferenceScreen>

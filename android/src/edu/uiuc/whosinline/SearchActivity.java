@@ -42,6 +42,10 @@ public class SearchActivity extends Activity {
 	        case android.R.id.home:
 	        	finish();
 	            return true;
+	        case R.id.menu_settings:
+	            Intent i = new Intent(this, SettingsActivity.class);
+	            startActivity(i);
+	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
