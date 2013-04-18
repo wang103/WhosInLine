@@ -94,7 +94,6 @@ public class DatabaseAccessObj {
 	public void insertVenue(int tableNum, Venue venue) {
 		ContentValues values = new ContentValues();
 
-		values.put(SQLiteHelperVenues.COLUMN_ID, venue.getId());
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_NAME, venue.getName());
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_IMAGE_PATH, venue.getImagePath());
 		values.put(SQLiteHelperVenues.COLUMN_VENUE_IMAGE_RESOURCE, venue.getImageResource());

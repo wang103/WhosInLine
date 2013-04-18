@@ -39,7 +39,7 @@ public abstract class BaseFragment extends ListFragment {
 		
 		// Fields on the UI to map.
 		int[] to = new int[] {R.id.cell_venue_name, R.id.cell_venue_image,
-				R.id.cell_venue_type, R.id.cell_rating_image,
+				R.id.cell_venue_type, R.id.cell_rating_number,
 				R.id.cell_distance, R.id.cell_wait_minutes};
 		
 		SimpleCursorAdapter tempAdapter = new SimpleCursorAdapter(getActivity(),

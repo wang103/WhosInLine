@@ -1,195 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-<RelativeLayout
-    android:id="@+id/cell_id"
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content" >
+    <RelativeLayout
+        android:id="@+id/cell_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip" >
 
-<TextView
-	android:id="@+id/cell_venue_name"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:gravity="left"
-	android:layout_alignParentTop="true"
-	android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:id="@+id/cell_venue_image_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dip"
+            android:padding="3dip" >
+
+            <ImageView
+                android:id="@+id/cell_venue_image"
+            	android:contentDescription="@string/str_venue_image_description"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:src="@drawable/ic_type_mexican" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cell_venue_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/cell_venue_image_container"
+            android:layout_toRightOf="@id/cell_venue_image_container"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <RatingBar
+            android:id="@+id/cell_rating"
+            style="@style/listRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cell_venue_name"
+            android:layout_toRightOf="@id/cell_venue_image_container"
+            android:layout_marginTop="1dip"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4.5"
+            android:stepSize="0.5" />
+        
+        <TextView
+            android:id="@+id/cell_rating_number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cell_venue_name"
+            android:layout_toRightOf="@id/cell_rating"
+            android:layout_marginLeft="3dip"
+            android:layout_marginTop="1dip"
+            android:textColor="#666666"
+            android:textStyle="italic"
+            android:textSize="12sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/cell_wait_minutes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cell_rating"
+            android:layout_marginTop="1dip"
+            android:layout_marginLeft="2dip"
+            android:layout_toRightOf="@+id/cell_venue_image_container"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/cell_venue_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/cell_venue_name"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="2dip"
+            android:gravity="right"
+            android:textColor="#666666"
+            android:textSize="13sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/cell_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/cell_venue_type"
+            android:layout_marginRight="5dip"
+            android:gravity="right"
+            android:textColor="#666666"
+            android:textSize="13sp"
+            android:typeface="sans" />
+        
+    </RelativeLayout>
     
-<ImageView
-	android:id="@+id/cell_venue_image"
-	android:contentDescription="@string/str_venue_image_description"
-	android:layout_width="80dp"
-	android:layout_height="80dp"
-	android:layout_alignTop="@+id/cell_venue_type"
-	android:layout_alignParentLeft="true" />
-
-<TextView
-	android:id="@+id/widget35"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/str_show_type"
-	android:layout_above="@+id/widget36"
-	android:layout_alignLeft="@+id/widget36" />
-
-<TextView
-	android:id="@+id/widget36"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/str_show_rating"
-	android:layout_below="@+id/widget40"
-	android:layout_toRightOf="@+id/cell_venue_image" />
-
-<TextView
-	android:id="@+id/widget44"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/str_show_distance"
-	android:layout_below="@+id/widget36"
-	android:layout_alignLeft="@+id/widget36" />
-
-<TextView
-	android:id="@+id/cell_venue_type"
-	android:layout_width="100dp"
-	android:layout_height="wrap_content"
-	android:layout_alignTop="@+id/widget40"
-	android:layout_alignLeft="@+id/cell_distance" />
-
-<ImageView
-	android:id="@+id/cell_rating_image"
-	android:contentDescription="@string/str_rating_image_description"
-	android:layout_width="100dp"
-	android:layout_height="20dp"
-	android:layout_alignTop="@+id/widget36"
-	android:layout_alignLeft="@+id/cell_distance" />
-
-<TextView
-	android:id="@+id/cell_distance"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_alignTop="@+id/widget44"
-	android:layout_toRightOf="@+id/widget44" />
-
-<TextView
-	android:id="@+id/widget45"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/str_show_distance_unit"
-	android:layout_alignTop="@+id/widget44"
-	android:layout_toRightOf="@+id/cell_distance" />
-
-<TextView
-	android:id="@+id/widget40"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/str_show_wait"
-	android:layout_below="@+id/cell_venue_name"
-	android:layout_alignParentRight="true" />
-
-<TextView
-	android:id="@+id/cell_wait_minutes"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:gravity="left"
-	android:layout_alignBottom="@+id/cell_rating_image"
-	android:layout_alignLeft="@+id/widget40" />
-
-<TextView
-	android:id="@+id/widget43"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/str_show_wait_unit"
-	android:layout_below="@+id/cell_rating_image"
-	android:layout_alignLeft="@+id/cell_wait_minutes" />
-
-</RelativeLayout>
-
-<!-- the expandable view that is initially hidden -->
-
-<LinearLayout
-	android:id="@+id/expandable"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="horizontal"
-	android:weightSum="5"
-	android:background="#555555">
-
-<Button
-    android:id="@+id/button_profile"
-	android:layout_width="0dp"
-	android:layout_height="fill_parent"
-	android:layout_weight="1"
-	android:drawableTop="@drawable/ic_list_profile"
-	android:background="@android:color/transparent"
-	android:onClick="onProfileButtonClick"
-	android:textColor="#ffffff"
-	android:text="@string/str_profile"
-	android:textSize="12sp"
-	android:layout_marginBottom="5dp"
-	android:layout_marginTop="5dp" >
-</Button>
-
-<Button
-    android:id="@+id/button_submit_wait"
-	android:layout_width="0dp"
-	android:layout_height="fill_parent"
-	android:layout_weight="1"
-	android:drawableTop="@drawable/ic_list_wait"
-	android:background="@android:color/transparent"
-	android:onClick="onSubmitWaitButtonClick"
-	android:textColor="#ffffff"
-	android:text="@string/str_submit_wait"
-	android:textSize="12sp"
-	android:layout_marginBottom="5dp"
-	android:layout_marginTop="5dp" >
-</Button>
-
-<Button
-    android:id="@+id/button_chat"
-	android:layout_width="0dp"
-	android:layout_height="fill_parent"
-	android:layout_weight="1"
-	android:drawableTop="@drawable/ic_list_chat"
-	android:background="@android:color/transparent"
-	android:onClick="onChatButtonClick"
-	android:textColor="#ffffff"
-	android:text="@string/str_chat"
-	android:textSize="12sp"
-	android:layout_marginBottom="5dp"
-	android:layout_marginTop="5dp" >
-</Button>
-
-<Button
-	android:id="@+id/button_write_review"
-	android:layout_width="0dp"
-	android:layout_height="fill_parent"
-	android:layout_weight="1"
-	android:background="@android:color/transparent"
-	android:onClick="onWriteReviewButtonClick"
-	android:drawableTop="@drawable/ic_list_review"
-	android:textColor="#ffffff"
-	android:text="@string/str_write_review"
-	android:textSize="12sp"
-	android:layout_marginBottom="5dp"
-	android:layout_marginTop="5dp" >
-</Button>
-
-<Button
-	android:id="@+id/button_favorite"
-	android:layout_width="0dp"
-	android:layout_height="fill_parent"
-	android:layout_weight="1"
-	android:background="@android:color/transparent"
-	android:onClick="onFavoriteButtonClick"
-	android:drawableTop="@drawable/ic_list_favorite"
-	android:textColor="#ffffff"
-	android:text="@string/str_favorite"
-	android:textSize="12sp"
-	android:layout_marginBottom="5dp"
-	android:layout_marginTop="5dp" >
-</Button>
-
-</LinearLayout>
-
+	<!-- the expandable view that is initially hidden -->
+	
+	<LinearLayout
+		android:id="@+id/expandable"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:weightSum="5"
+		android:background="#555555">
+        
+		<Button
+		    android:id="@+id/button_profile"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:drawableTop="@drawable/ic_list_profile"
+			android:background="@android:color/transparent"
+			android:onClick="onProfileButtonClick"
+			android:textColor="#ffffff"
+			android:text="@string/str_profile"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+		    android:id="@+id/button_submit_wait"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:drawableTop="@drawable/ic_list_wait"
+			android:background="@android:color/transparent"
+			android:onClick="onSubmitWaitButtonClick"
+			android:textColor="#ffffff"
+			android:text="@string/str_submit_wait"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+		    android:id="@+id/button_chat"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:drawableTop="@drawable/ic_list_chat"
+			android:background="@android:color/transparent"
+			android:onClick="onChatButtonClick"
+			android:textColor="#ffffff"
+			android:text="@string/str_chat"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+			android:id="@+id/button_write_review"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:background="@android:color/transparent"
+			android:onClick="onWriteReviewButtonClick"
+			android:drawableTop="@drawable/ic_list_review"
+			android:textColor="#ffffff"
+			android:text="@string/str_write_review"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		<Button
+			android:id="@+id/button_favorite"
+			android:layout_width="0dp"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:background="@android:color/transparent"
+			android:onClick="onFavoriteButtonClick"
+			android:drawableTop="@drawable/ic_list_favorite"
+			android:textColor="#ffffff"
+			android:text="@string/str_favorite"
+			android:textSize="12sp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp" >
+		</Button>
+		
+	</LinearLayout>
+	
 </LinearLayout>
