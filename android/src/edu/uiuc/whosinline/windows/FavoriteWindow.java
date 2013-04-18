@@ -29,7 +29,6 @@ public class FavoriteWindow extends BaseWindow {
 		dao.open();
 		
 		if (addToFavorite) {
-			venue.setId(dao.getTableRowCount(2));
 			dao.insertVenue(2, venue);
 		} else {
 			dao.deleteVenue(2, venue);
@@ -61,7 +60,6 @@ public class FavoriteWindow extends BaseWindow {
 		dao.open();
 		Venue temp = dao.getVenue(2, venue.getName());
 		if (temp != null) {
-			venue = temp;
 			addToFavorite = false;
 		}
 		dao.close();

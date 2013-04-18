@@ -1,6 +1,9 @@
 package edu.uiuc.whosinline.windows;
 
+import edu.uiuc.whosinline.HomeActivity;
 import edu.uiuc.whosinline.R;
+import edu.uiuc.whosinline.data.Venue;
+import edu.uiuc.whosinline.database.DatabaseAccessObj;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -17,7 +20,20 @@ public class SubmitWaitTimeWindow extends BaseWindow {
 	private TextView textViewVenueName;
 	private EditText editTextWaitTime;
 	
-	private void submitWaitTime(int waitTimeMinutes) {
+	private void submitWaitTime(int waitTimeMinutes, Venue venue) {
+		
+		DatabaseAccessObj dao = new DatabaseAccessObj(getActivity());
+		dao.open();
+		
+		if (dao.getVenue(1, venue.getName()) == null) {
+			dao.insertVenue(1, venue);
+		}
+		
+		dao.close();
+		
+		HomeActivity ha = (HomeActivity) this.getActivity();
+		ha.refreshList(1);
+		
 		Toast toast = Toast.makeText(getActivity(), "Wait time submitted", Toast.LENGTH_SHORT);
 		toast.show();
 	}
@@ -38,12 +54,14 @@ public class SubmitWaitTimeWindow extends BaseWindow {
 		LayoutInflater inflator = getActivity().getLayoutInflater();
 		View view = inflator.inflate(R.layout.window_submit_wait_time, null);
 		
+		final Venue venue = getVenue(getArguments(), getActivity());
+		
 		textViewVenueName = (TextView) view.findViewById(R.id.venue_name_textview);
 		editTextWaitTime = (EditText) view.findViewById(R.id.wait_time_edittext);
 		positiveButton = (Button) view.findViewById(R.id.positive_button);
 		negativeButton = (Button) view.findViewById(R.id.negative_button);
 		
-		textViewVenueName.setText(getVenue(getArguments(), getActivity()).getName());
+		textViewVenueName.setText(venue.getName());
 		
 		builder.setView(view);
 		
@@ -55,7 +73,7 @@ public class SubmitWaitTimeWindow extends BaseWindow {
 				String input = editTextWaitTime.getText().toString();
 				
 				if (checkUserInput(input)) {
-					submitWaitTime(Integer.parseInt(input));
+					submitWaitTime(Integer.parseInt(input), venue);
 					SubmitWaitTimeWindow.this.getDialog().dismiss();
 				} else {
 					Toast toast = Toast.makeText(getActivity(), "Invalid input", Toast.LENGTH_SHORT);

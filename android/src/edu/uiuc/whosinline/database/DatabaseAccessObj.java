@@ -45,6 +45,14 @@ public class DatabaseAccessObj {
 		dbHelper.close();
 	}
 
+	public int getTableRowCount(int tableNum) {
+		String tableName = getTableName(tableNum);
+		String statement = "SELECT Count(*) FROM " + tableName;
+		Cursor cursor = database.rawQuery(statement, null);
+		cursor.moveToFirst();
+		return cursor.getInt(0);
+	}
+	
 	private String getTableName(int tableNum) {
 		if (tableNum == 0) {
 			return SQLiteHelperVenues.TABLE_NAME_NEARBY;
@@ -75,14 +83,6 @@ public class DatabaseAccessObj {
 			return cursorToVenue(cursor);
 		}
 		return null;
-	}
-	
-	public int getTableRowCount(int tableNum) {
-		String tableName = getTableName(tableNum);
-		String statement = "SELECT Count(*) FROM " + tableName;
-		Cursor cursor = database.rawQuery(statement, null);
-		cursor.moveToFirst();
-		return cursor.getInt(0);
 	}
 	
 	/**
@@ -130,21 +130,26 @@ public class DatabaseAccessObj {
 		database.delete(tableName, SQLiteHelperVenues.COLUMN_ID + "=" + id, null);
 	}
 
-	public Cursor getCursor(int tableNum) {
+	public Cursor getCursor(int tableNum, boolean reverse) {
 		String tableName = getTableName(tableNum);
 
+		String orderBy = SQLiteHelperVenues.COLUMN_ID;
+		if (reverse) {
+			orderBy += " DESC";
+		}
+		
 		Cursor cursor = database.query(tableName, columnNames, null, null,
-				null, null, null);
-		
+				null, null, orderBy);
+
 		cursor.moveToFirst();
-		
+
 		return cursor;
 	}
 	
 	public List<Venue> getAllVenues(int tableNum) {
 		List<Venue> venues = new ArrayList<Venue>();
 
-		Cursor cursor = getCursor(tableNum);
+		Cursor cursor = getCursor(tableNum, false);
 
 		while (!cursor.isAfterLast()) {
 			Venue venue = cursorToVenue(cursor);

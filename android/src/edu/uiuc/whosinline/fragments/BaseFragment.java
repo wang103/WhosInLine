@@ -28,7 +28,7 @@ public abstract class BaseFragment extends ListFragment {
 	public void fillData(int tableNum) {
 		
 		VenueItemAdapter tempAdapter = new VenueItemAdapter(getActivity(),
-				dbAccessObj.getCursor(tableNum), false);
+				dbAccessObj.getCursor(tableNum, tableNum == 1 ? true : false), false);
 		
 		adapter = new SlideExpandableListAdapter(tempAdapter, R.id.cell_id,
 				R.id.expandable);
