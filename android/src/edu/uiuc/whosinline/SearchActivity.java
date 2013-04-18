@@ -4,16 +4,25 @@ import com.tjerkw.slideexpandable.library.SlideExpandableListAdapter;
 
 import edu.uiuc.whosinline.database.DatabaseAccessObj;
 import edu.uiuc.whosinline.fragments.VenueItemAdapter;
+import edu.uiuc.whosinline.windows.ChatWindow;
+import edu.uiuc.whosinline.windows.FavoriteWindow;
+import edu.uiuc.whosinline.windows.SubmitWaitTimeWindow;
+import edu.uiuc.whosinline.windows.WriteReviewWindow;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
 public class SearchActivity extends ListActivity {
 
+	private int tableNum;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,7 +60,7 @@ public class SearchActivity extends ListActivity {
 	}
 
 	private void setupListForResults(Bundle bundle) {
-		int tableNum = bundle.getInt(HomeActivity.INTENT_TABLE_NUM);
+		tableNum = bundle.getInt(HomeActivity.INTENT_TABLE_NUM);
 		String query = bundle.getString(HomeActivity.INTENT_QUERY);
 
 		// Search the database and display the results.
@@ -68,5 +77,76 @@ public class SearchActivity extends ListActivity {
 				tempAdapter, R.id.cell_id, R.id.expandable);
 
 		setListAdapter(adapter);
+	}
+	
+	public void onProfileButtonClick(View v) {
+		ListView lv = getListView();
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+
+		Intent intent = new Intent(this, VenueActivity.class);
+		Bundle extras = new Bundle();
+		extras.putInt(HomeActivity.INTENT_TABLE_NUM, tableNum);
+		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
+		intent.putExtras(extras);
+		startActivity(intent);
+	}
+	
+	public void onSubmitWaitButtonClick(View v) {
+		ListView lv = getListView();
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+
+		SubmitWaitTimeWindow windowFrag = new SubmitWaitTimeWindow();
+		Bundle extras = new Bundle();
+		extras.putInt(HomeActivity.INTENT_TABLE_NUM, tableNum);
+		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
+		windowFrag.setArguments(extras);
+		windowFrag.show(getFragmentManager(), HomeActivity.TAG_SUBMIT_WAIT_TIME_WINDOW);
+	}
+
+	public void onChatButtonClick(View v) {
+		ListView lv = getListView();
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+
+		ChatWindow windowFrag = new ChatWindow();
+		Bundle extras = new Bundle();
+		extras.putBoolean(HomeActivity.INTENT_CHAT_TYPE, true);
+		extras.putInt(HomeActivity.INTENT_TABLE_NUM, tableNum);
+		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
+		windowFrag.setArguments(extras);
+		windowFrag.show(getFragmentManager(), HomeActivity.TAG_CHAT_WINDOW);
+	}
+
+	public void onWriteReviewButtonClick(View v) {
+		ListView lv = getListView();
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+
+		WriteReviewWindow windowFrag = new WriteReviewWindow();
+		Bundle extras = new Bundle();
+		extras.putInt(HomeActivity.INTENT_TABLE_NUM, tableNum);
+		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
+		windowFrag.setArguments(extras);
+		windowFrag.show(getFragmentManager(), HomeActivity.TAG_WRITE_REVIEW_WINDOW);
+	}
+
+	public void onFavoriteButtonClick(View v) {
+		ListView lv = getListView();
+		int position = lv.getPositionForView(v);
+		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
+		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+
+		FavoriteWindow windowFrag = new FavoriteWindow();
+		Bundle extras = new Bundle();
+		extras.putInt(HomeActivity.INTENT_TABLE_NUM, tableNum);
+		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
+		windowFrag.setArguments(extras);
+		windowFrag.show(getFragmentManager(), HomeActivity.TAG_FAVORITE_WINDOW);
 	}
 }

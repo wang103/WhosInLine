@@ -4,6 +4,7 @@ import edu.uiuc.whosinline.HomeActivity;
 import edu.uiuc.whosinline.R;
 import edu.uiuc.whosinline.data.Venue;
 import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -36,8 +37,10 @@ public class FavoriteWindow extends BaseWindow {
 		
 		dao.close();
 		
-		HomeActivity ha = (HomeActivity) this.getActivity();
-		ha.refreshList(2);
+		Activity activity = this.getActivity();
+		if (activity instanceof HomeActivity) {
+			((HomeActivity) activity).refreshList(2);
+		}
 		
 		String feedback;
 		if (addToFavorite) {
@@ -46,7 +49,7 @@ public class FavoriteWindow extends BaseWindow {
 			feedback = "Venue removed from favorites";
 		}
 		
-		Toast toast = Toast.makeText(getActivity(), feedback, Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(activity, feedback, Toast.LENGTH_SHORT);
 		toast.show();
 	}
 	

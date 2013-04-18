@@ -274,7 +274,7 @@ public class HomeActivity extends FragmentActivity {
 		extras.putInt(INTENT_TABLE_NUM, tableNum);
 		extras.putLong(INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);
-		windowFrag.show(fragmentManager, TAG_SUBMIT_WAIT_TIME_WINDOW);
+		windowFrag.show(getFragmentManager(), TAG_SUBMIT_WAIT_TIME_WINDOW);
 	}
 
 	public void onChatButtonClick(View v) {
@@ -300,7 +300,7 @@ public class HomeActivity extends FragmentActivity {
 		extras.putInt(INTENT_TABLE_NUM, tableNum);
 		extras.putLong(INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);
-		windowFrag.show(fragmentManager, TAG_CHAT_WINDOW);
+		windowFrag.show(getFragmentManager(), TAG_CHAT_WINDOW);
 	}
 
 	public void onWriteReviewButtonClick(View v) {
@@ -325,7 +325,7 @@ public class HomeActivity extends FragmentActivity {
 		extras.putInt(INTENT_TABLE_NUM, tableNum);
 		extras.putLong(INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);
-		windowFrag.show(fragmentManager, TAG_WRITE_REVIEW_WINDOW);
+		windowFrag.show(getFragmentManager(), TAG_WRITE_REVIEW_WINDOW);
 	}
 
 	public void onFavoriteButtonClick(View v) {
@@ -350,6 +350,6 @@ public class HomeActivity extends FragmentActivity {
 		extras.putInt(INTENT_TABLE_NUM, tableNum);
 		extras.putLong(INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);
-		windowFrag.show(fragmentManager, TAG_FAVORITE_WINDOW);
+		windowFrag.show(getFragmentManager(), TAG_FAVORITE_WINDOW);
 	}
 }

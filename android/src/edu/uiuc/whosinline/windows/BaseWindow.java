@@ -5,10 +5,9 @@ import edu.uiuc.whosinline.data.Venue;
 import edu.uiuc.whosinline.database.DatabaseAccessObj;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.widget.Button;
 
-public class BaseWindow extends DialogFragment {
+public class BaseWindow extends android.app.DialogFragment {
 
 	protected Button positiveButton;
 	protected Button negativeButton;

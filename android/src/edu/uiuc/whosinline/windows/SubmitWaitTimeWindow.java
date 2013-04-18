@@ -4,6 +4,7 @@ import edu.uiuc.whosinline.HomeActivity;
 import edu.uiuc.whosinline.R;
 import edu.uiuc.whosinline.data.Venue;
 import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -31,8 +32,10 @@ public class SubmitWaitTimeWindow extends BaseWindow {
 		
 		dao.close();
 		
-		HomeActivity ha = (HomeActivity) this.getActivity();
-		ha.refreshList(1);
+		Activity activity = this.getActivity();
+		if (activity instanceof HomeActivity) {
+			((HomeActivity) activity).refreshList(1);
+		}
 		
 		Toast toast = Toast.makeText(getActivity(), "Wait time submitted", Toast.LENGTH_SHORT);
 		toast.show();
