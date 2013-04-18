@@ -21,6 +21,7 @@
             android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -33,15 +34,23 @@
         <activity
             android:name="edu.uiuc.whosinline.SearchActivity"
             android:label="@string/title_activity_search" >
-           	<intent-filter>
-           	    <action android:name="android.intent.action.SEARCH" />
-           	</intent-filter>
-           	<meta-data
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <meta-data 
+
+        <meta-data
             android:name="android.app.default_searchable"
             android:value="edu.uiuc.whosinline.SearchActivity" />
+
+        <activity
+            android:name="edu.uiuc.whosinline.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
+
 </manifest>

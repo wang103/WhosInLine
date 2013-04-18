@@ -10,5 +10,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="search_hint">Find a Venue</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>
