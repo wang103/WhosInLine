@@ -22,6 +22,7 @@ import android.widget.ListView;
 public class SearchActivity extends ListActivity {
 
 	private int tableNum;
+	private int needToRefreshTables = -1;	//-1: none, 1: recent, 2: favorite, 3: both recent & favorite
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,9 @@ public class SearchActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			Intent returnIntent = new Intent();
+			returnIntent.putExtra("needToRefreshTables", needToRefreshTables);
+			setResult(RESULT_OK, returnIntent);
 			finish();
 			return true;
 		case R.id.menu_settings:
@@ -59,6 +63,14 @@ public class SearchActivity extends ListActivity {
 		}
 	}
 
+	@Override
+	public void onBackPressed() {
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra("needToRefreshTables", needToRefreshTables);
+		setResult(RESULT_OK, returnIntent);
+		super.onBackPressed();
+	}
+	
 	private void setupListForResults(Bundle bundle) {
 		tableNum = bundle.getInt(HomeActivity.INTENT_TABLE_NUM);
 		String query = bundle.getString(HomeActivity.INTENT_QUERY);
@@ -78,7 +90,7 @@ public class SearchActivity extends ListActivity {
 
 		setListAdapter(adapter);
 	}
-	
+
 	public void onProfileButtonClick(View v) {
 		ListView lv = getListView();
 		int position = lv.getPositionForView(v);
@@ -92,7 +104,7 @@ public class SearchActivity extends ListActivity {
 		intent.putExtras(extras);
 		startActivity(intent);
 	}
-	
+
 	public void onSubmitWaitButtonClick(View v) {
 		ListView lv = getListView();
 		int position = lv.getPositionForView(v);
@@ -105,6 +117,11 @@ public class SearchActivity extends ListActivity {
 		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);
 		windowFrag.show(getFragmentManager(), HomeActivity.TAG_SUBMIT_WAIT_TIME_WINDOW);
+		if (needToRefreshTables == 2) {
+			needToRefreshTables = 3;
+		} else if (needToRefreshTables == -1) {
+			needToRefreshTables = 1;
+		}
 	}
 
 	public void onChatButtonClick(View v) {
@@ -134,6 +151,11 @@ public class SearchActivity extends ListActivity {
 		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);
 		windowFrag.show(getFragmentManager(), HomeActivity.TAG_WRITE_REVIEW_WINDOW);
+		if (needToRefreshTables == 2) {
+			needToRefreshTables = 3;
+		} else if (needToRefreshTables == -1) {
+			needToRefreshTables = 1;
+		}
 	}
 
 	public void onFavoriteButtonClick(View v) {
@@ -148,5 +170,10 @@ public class SearchActivity extends ListActivity {
 		extras.putLong(HomeActivity.INTENT_VENUE_ID, venueID);
 		windowFrag.setArguments(extras);
 		windowFrag.show(getFragmentManager(), HomeActivity.TAG_FAVORITE_WINDOW);
+		if (needToRefreshTables == 1) {
+			needToRefreshTables = 3;
+		} else if (needToRefreshTables == -1) {
+			needToRefreshTables = 2;
+		}
 	}
 }

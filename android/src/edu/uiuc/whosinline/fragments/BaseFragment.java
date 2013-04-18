@@ -27,6 +27,10 @@ public abstract class BaseFragment extends ListFragment {
 	 */
 	public void fillData(int tableNum) {
 		
+		boolean isOpen = dbAccessObj.isOpen();
+		if (isOpen == false) {
+			dbAccessObj.open();
+		}
 		VenueItemAdapter tempAdapter = new VenueItemAdapter(getActivity(),
 				dbAccessObj.getCursor(tableNum, tableNum == 1 ? true : false), false);
 		
@@ -34,6 +38,10 @@ public abstract class BaseFragment extends ListFragment {
 				R.id.expandable);
 
 		setListAdapter(adapter);
+		
+		if (isOpen == false) {
+			dbAccessObj.close();
+		}
 	}
 	
 	@Override

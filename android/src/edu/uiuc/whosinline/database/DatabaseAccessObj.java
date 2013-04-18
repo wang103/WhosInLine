@@ -37,6 +37,10 @@ public class DatabaseAccessObj {
 		dbHelper = new SQLiteHelperVenues(context);
 	}
 
+	public boolean isOpen() {
+		return database.isOpen();
+	}
+	
 	public void open() {
 		database = dbHelper.getWritableDatabase();
 	}
@@ -76,7 +80,7 @@ public class DatabaseAccessObj {
 	public Venue getVenue(int tableNum, String name) {
 		String tableName = getTableName(tableNum);
 		String statement = "SELECT * FROM " + tableName + " WHERE "
-				+ SQLiteHelperVenues.COLUMN_VENUE_NAME + "='" + name + "'";
+				+ SQLiteHelperVenues.COLUMN_VENUE_NAME + "=\"" + name + "\"";
 		Cursor cursor = database.rawQuery(statement, null);
 		if (cursor.moveToFirst()) {
 			return cursorToVenue(cursor);

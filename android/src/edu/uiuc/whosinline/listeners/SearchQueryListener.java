@@ -50,7 +50,7 @@ public class SearchQueryListener implements OnQueryTextListener {
 		appData.putInt(HomeActivity.INTENT_TABLE_NUM, tableNum);
 		appData.putString(HomeActivity.INTENT_QUERY, query);
 		intent.putExtras(appData);
-		activity.startActivity(intent);
+		activity.startActivityForResult(intent, HomeActivity.RESULT_REFRESH);
 		
 		return true;
 	}

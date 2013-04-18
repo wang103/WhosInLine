@@ -40,8 +40,8 @@ public class HomeActivity extends FragmentActivity {
 
 	private FragmentManager fragmentManager;
 	private ViewPager viewPager;
-	private boolean exit_on_back = true;
-
+	private boolean exitOnBack = true;
+	
 	final static public String INTENT_CHAT_TYPE = "intent_chat_type";
 	final static public String INTENT_TABLE_NUM = "intent_table_num";
 	final static public String INTENT_VENUE_ID = "intent_venue_id";
@@ -56,8 +56,9 @@ public class HomeActivity extends FragmentActivity {
 	final static public String TAG_CHAT_WINDOW = "chat";
 	final static public String TAG_WRITE_REVIEW_WINDOW = "write_review";
 	final static public String TAG_FAVORITE_WINDOW = "favorite";
-
-	final static private int RESULT_SETTINGS = 1;
+	
+	final static public int RESULT_REFRESH = 0;
+	final static public int RESULT_SETTINGS = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,10 +122,20 @@ public class HomeActivity extends FragmentActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		switch (requestCode) {
+		case RESULT_REFRESH:
+			// Get the table number that needs to be refreshed.
+			int needToRefreshTable = data.getIntExtra("needToRefreshTables", 0);
+			if (needToRefreshTable == 1 || needToRefreshTable == 3) {
+				refreshList(1);
+			}
+			if (needToRefreshTable == 2 || needToRefreshTable == 3) {
+				refreshList(2);
+			}
+			break;
 		case RESULT_SETTINGS:
 			// Get the boolean value from the checkbox.
 			SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-			this.exit_on_back = sharedPrefs.getBoolean("prefexit", true);
+			this.exitOnBack = sharedPrefs.getBoolean("prefexit", true);
 			break;
 		}
 	}
@@ -201,7 +212,7 @@ public class HomeActivity extends FragmentActivity {
 
 	@Override
 	public void onBackPressed() {
-		if(exit_on_back){
+		if (exitOnBack) {
 			// Confirm if user really want to exit the app.
 			Builder alertBuilder = new AlertDialog.Builder(this);
 			alertBuilder.setMessage("Do you want to exit the app?");
@@ -215,8 +226,7 @@ public class HomeActivity extends FragmentActivity {
 			alertBuilder.setNegativeButton("NO", null);
 			alertBuilder.show();
 		}
-		else
-		{
+		else {
 			HomeActivity.this.finish();
 		}
 	}
