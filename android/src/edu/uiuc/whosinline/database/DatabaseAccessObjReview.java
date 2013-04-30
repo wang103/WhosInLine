@@ -1,5 +1,7 @@
 package edu.uiuc.whosinline.database;
 
+import edu.uiuc.whosinline.data.Review;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class DatabaseAccessObjReview {
 	
 	private SQLiteDatabase database;
-	private SQLiteHelperVenues dbHelper;
+	private SQLiteHelperReview dbHelper;
 	
 	private String[] columnNames = {SQLiteHelperReview.COLUMN_ID,
 			SQLiteHelperReview.COLUMN_REVIEW_VENUE_NAME,
@@ -17,7 +19,7 @@ public class DatabaseAccessObjReview {
 			SQLiteHelperReview.COLUMN_REVIEW_USER_NAME};
 	
 	public DatabaseAccessObjReview(Context context) {
-		dbHelper = new SQLiteHelperVenues(context);
+		dbHelper = new SQLiteHelperReview(context);
 	}
 
 	public boolean isOpen() {
@@ -32,8 +34,37 @@ public class DatabaseAccessObjReview {
 		dbHelper.close();
 	}
 
+	/**
+	 * Insert a new review into the SQLite database.
+	 * 
+	 * @param review a {@link Review} object.
+	 */
+	public void insertReview(Review review) {
+		ContentValues values = new ContentValues();
+
+		values.put(SQLiteHelperReview.COLUMN_REVIEW_VENUE_NAME, review.getVenueName());
+		values.put(SQLiteHelperReview.COLUMN_REVIEW_TITLE, review.getTitle());
+		values.put(SQLiteHelperReview.COLUMN_REVIEW_CONTENT, review.getContent());
+		values.put(SQLiteHelperReview.COLUMN_REVIEW_RATING, review.getRating());
+		values.put(SQLiteHelperReview.COLUMN_REVIEW_USER_NAME, review.getUserName());
+
+		database.insert(SQLiteHelperReview.TABLE_NAME_REVIEW, null, values);
+	}
+
+	/**
+	 * Delete a review from the SQLite database.
+	 * 
+	 * @param review a {@link Review} object.
+	 */
+	public void deleteReview(Review review) {
+		int id = review.getId();
+
+		database.delete(SQLiteHelperReview.TABLE_NAME_REVIEW,
+				SQLiteHelperReview.COLUMN_ID + "=" + id, null);
+	}
+	
 	public Cursor getCursor(boolean reverse) {
-		String orderBy = SQLiteHelperVenues.COLUMN_ID;
+		String orderBy = SQLiteHelperReview.COLUMN_ID;
 		if (reverse) {
 			orderBy += " DESC";
 		}
@@ -44,5 +75,18 @@ public class DatabaseAccessObjReview {
 		cursor.moveToFirst();
 
 		return cursor;
+	}
+	
+	/**
+	 * Helper method to convert a {@link Cursor} object to a {@link Review} object.
+	 * 
+	 * @param cursor a {@link Cursor} object.
+	 * @return a {@link Review} object.
+	 */
+	public static Review cursorToReview(Cursor cursor) {
+		Review review = new Review(cursor.getInt(0), cursor.getString(1),
+				cursor.getString(1), cursor.getString(1), cursor.getFloat(5),
+				cursor.getString(1));
+		return review;
 	}
 }
