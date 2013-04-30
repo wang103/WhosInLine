@@ -34,6 +34,25 @@ public class DatabaseAccessObjReview {
 		dbHelper.close();
 	}
 
+	public int getTableRowCount() {
+		String statement = "SELECT Count(*) FROM " +
+				SQLiteHelperReview.TABLE_NAME_REVIEW;
+		Cursor cursor = database.rawQuery(statement, null);
+		cursor.moveToFirst();
+		return cursor.getInt(0);
+	}
+	
+	public Cursor getReviewsForVenue(String venueName) {
+		String statement = "SELECT * FROM " + SQLiteHelperReview.TABLE_NAME_REVIEW
+				+ " WHERE " + SQLiteHelperReview.COLUMN_REVIEW_VENUE_NAME + "=\""
+				+ venueName + "\"";
+		Cursor cursor = database.rawQuery(statement, null);
+		if (cursor.moveToFirst()) {
+			return cursor;
+		}
+		return null;
+	}
+	
 	/**
 	 * Insert a new review into the SQLite database.
 	 * 
