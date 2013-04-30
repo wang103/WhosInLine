@@ -169,7 +169,6 @@ public class NearbyFragment extends BaseFragment {
 				"Bar", 2.5f, 0.37f, 5, 
 				"55 E Main St Champaign, IL 61820", "(111) 111-1111", hs); 
 		dbAccessObj.insertVenue(tableNum, venue);
-		
 	}
 	
 	@Override

@@ -4,14 +4,15 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".VenueActivity" >
-	
-    <!-- Venue Info -->
     
+    <!-- Venue Info -->
+       	
     <TextView
         android:id="@+id/venue_info_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:textColor="#040404"
         android:paddingLeft="5dp"
         android:paddingTop="8dp"
@@ -186,7 +187,7 @@
    	<TextView
    	    android:id="@+id/review_header"
    	    android:layout_width="match_parent"
-   	    android:layout_height="match_parent"
+   	    android:layout_height="wrap_content"
    	    android:layout_marginTop="10dp"
    	    android:layout_marginLeft="6dp"
    	    android:layout_below="@id/venue_divider2"
@@ -195,9 +196,10 @@
    	    android:textStyle="bold" />
    	
    	<ListView 
-   	   	android:id="@+id/review_list"
+   	   	android:id="@android:id/list"
+   	   	android:layout_alignParentLeft="true"
+   	   	android:layout_below="@+id/review_header"
     	android:layout_width="match_parent"
-    	android:layout_below="@id/review_header"
    	    android:layout_height="wrap_content" />
 
 </RelativeLayout>

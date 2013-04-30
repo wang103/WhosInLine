@@ -11,15 +11,17 @@ import edu.uiuc.whosinline.data.Venue;
 import edu.uiuc.whosinline.listeners.MenuItemListener;
 import android.os.Bundle;
 import android.app.ActionBar;
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class VenueActivity extends Activity {
+public class VenueActivity extends ListActivity {
 
 	private DatabaseAccessObjVenue dbAccessObjVenue;
 	private DatabaseAccessObjReview dbAccessObjReview;
@@ -29,10 +31,22 @@ public class VenueActivity extends Activity {
 	private void insertTestReviewData() {
 		Review review;
 		
-		review = new Review(0, "Cravings Restaurant", "Good", "Yes, yes, yes! These people aren't goofing around! Although this restaurant is lacking in atmosphere, this is fully made up for in quality and quantity of food. It is by far the best tasting Chinese I have had on campus, for a bargain deal too! Bang for your buck, get some takeout and give it  a try.", 5.0f, "Daniel R.");
+		review = new Review(0, "Cravings Restaurant", "Good", "Yes, yes, yes! " +
+				"These people aren't goofing around! Although this restaurant " +
+				"is lacking in atmosphere, this is fully made up for in quality " +
+				"and quantity of food. It is by far the best tasting Chinese I " +
+				"have had on campus, for a bargain deal too! Bang for your buck, " +
+				"get some takeout and give it  a try.", 5.0f, "Daniel R.");
 		dbAccessObjReview.insertReview(review);
 		
-		review = new Review(0, "Cravings Restaurant", "Great", "Cravings really caters to poor college students--the prices are cheap and the portions are decently sized. And it also helps that the food is actually good here.", 4.0f, "Connie L.");
+		review = new Review(1, "Cravings Restaurant", "Great", "Cravings really " +
+				"caters to poor college students--the prices are cheap and the " +
+				"portions are decently sized. And it also helps that the food is " +
+				"actually good here.", 4.0f, "Connie L.");
+		dbAccessObjReview.insertReview(review);
+		
+		review = new Review(2, "Cravings Restaurant", "Love it", "I eat here " +
+				"everyday!", 4.5f, "Tian W.");
 		dbAccessObjReview.insertReview(review);
 	}
 	
@@ -64,10 +78,23 @@ public class VenueActivity extends Activity {
 		setTitle(venue.getName());
 
 		setUI(venue);
+		setReviewList(venue);
 
 		// Give the action bar a back button.
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+	}
+
+	private void setReviewList(Venue venue) {
+		boolean isOpen = dbAccessObjReview.isOpen();
+		if (isOpen == false) {
+			dbAccessObjReview.open();
+		}
+
+		Cursor cursor = dbAccessObjReview.getReviewsForVenue(venue.getName());
+		CursorAdapter cAdapter = new ReviewItemAdapter(this, cursor, false);
+		
+		setListAdapter(cAdapter);
 	}
 
 	private void setUI(Venue venue) {

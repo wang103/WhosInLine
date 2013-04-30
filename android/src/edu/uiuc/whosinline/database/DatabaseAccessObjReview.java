@@ -1,5 +1,8 @@
 package edu.uiuc.whosinline.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.uiuc.whosinline.data.Review;
 import android.content.ContentValues;
 import android.content.Context;
@@ -106,6 +109,22 @@ public class DatabaseAccessObjReview {
 		return cursor;
 	}
 	
+	public List<Review> getAllReviews() {
+		List<Review> reviews = new ArrayList<Review>();
+
+		Cursor cursor = getCursor(false);
+
+		while (!cursor.isAfterLast()) {
+			Review review = cursorToReview(cursor);
+			reviews.add(review);
+
+			cursor.moveToNext();
+		}
+
+		cursor.close();
+		return reviews;
+	}
+	
 	/**
 	 * Helper method to convert a {@link Cursor} object to a {@link Review} object.
 	 * 
@@ -114,8 +133,8 @@ public class DatabaseAccessObjReview {
 	 */
 	public static Review cursorToReview(Cursor cursor) {
 		Review review = new Review(cursor.getInt(0), cursor.getString(1),
-				cursor.getString(1), cursor.getString(1), cursor.getFloat(5),
-				cursor.getString(1));
+				cursor.getString(2), cursor.getString(3), cursor.getFloat(4),
+				cursor.getString(5));
 		return review;
 	}
 }

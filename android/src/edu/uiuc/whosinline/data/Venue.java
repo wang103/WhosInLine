@@ -117,4 +117,13 @@ public class Venue {
 	public void setHours(HoursSchedule hours) {
 		this.hours = hours;
 	}
+
+	@Override
+	public String toString() {
+		return "Venue [id=" + id + ", name=" + name + ", imagePath="
+				+ imagePath + ", imageResource=" + imageResource + ", type="
+				+ type + ", rating=" + rating + ", distance=" + distance
+				+ ", waitMinutes=" + waitMinutes + ", address=" + address
+				+ ", phoneNumber=" + phoneNumber + ", hours=" + hours + "]";
+	}
 }
