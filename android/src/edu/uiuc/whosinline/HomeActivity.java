@@ -1,7 +1,7 @@
 package edu.uiuc.whosinline;
 
 import edu.uiuc.whosinline.adapters.SwipePagerAdapter;
-import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import edu.uiuc.whosinline.fragments.BaseFragment;
 import edu.uiuc.whosinline.fragments.FavoriteFragment;
 import edu.uiuc.whosinline.fragments.NearbyFragment;
@@ -245,7 +245,7 @@ public class HomeActivity extends FragmentActivity {
 		int tableNum;
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -270,7 +270,7 @@ public class HomeActivity extends FragmentActivity {
 		int tableNum;
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -295,7 +295,7 @@ public class HomeActivity extends FragmentActivity {
 		int tableNum;
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -321,7 +321,7 @@ public class HomeActivity extends FragmentActivity {
 		int tableNum;
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {
@@ -346,7 +346,7 @@ public class HomeActivity extends FragmentActivity {
 		int tableNum;
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 		if (fragment instanceof NearbyFragment) {
 			tableNum = 0;
 		} else if (fragment instanceof RecentFragment) {

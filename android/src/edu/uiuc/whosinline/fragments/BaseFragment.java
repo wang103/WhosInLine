@@ -3,20 +3,20 @@ package edu.uiuc.whosinline.fragments;
 import com.tjerkw.slideexpandable.library.SlideExpandableListAdapter;
 
 import edu.uiuc.whosinline.R;
-import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 
 public abstract class BaseFragment extends ListFragment {
 	
 	protected SlideExpandableListAdapter adapter;
-	protected DatabaseAccessObj dbAccessObj;
+	protected DatabaseAccessObjVenue dbAccessObj;
 		
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		dbAccessObj = new DatabaseAccessObj(getActivity());
+		dbAccessObj = new DatabaseAccessObjVenue(getActivity());
 		dbAccessObj.open();
 	}
 	

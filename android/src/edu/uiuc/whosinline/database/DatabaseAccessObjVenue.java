@@ -10,7 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class DatabaseAccessObj {
+public class DatabaseAccessObjVenue {
 
 	private SQLiteDatabase database;
 	private SQLiteHelperVenues dbHelper;
@@ -33,7 +33,7 @@ public class DatabaseAccessObj {
 			SQLiteHelperVenues.COLUMN_VENUE_HOURS_SATURDAY,
 			SQLiteHelperVenues.COLUMN_VENUE_HOURS_SUNDAY};
 
-	public DatabaseAccessObj(Context context) {
+	public DatabaseAccessObjVenue(Context context) {
 		dbHelper = new SQLiteHelperVenues(context);
 	}
 

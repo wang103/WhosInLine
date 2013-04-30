@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import edu.uiuc.whosinline.data.Venue;
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 public class VenueActivity extends Activity {
 
-	private DatabaseAccessObj dbAccessObj;
+	private DatabaseAccessObjVenue dbAccessObj;
 	private Venue venue;
 
 	@Override
@@ -32,7 +32,7 @@ public class VenueActivity extends Activity {
 		long venueId = extras.getLong(HomeActivity.INTENT_VENUE_ID);
 
 		// Get the database object.
-		dbAccessObj = new DatabaseAccessObj(this);
+		dbAccessObj = new DatabaseAccessObjVenue(this);
 		dbAccessObj.open();
 
 		// Get all the info about this venue.

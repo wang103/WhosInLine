@@ -3,7 +3,7 @@ package edu.uiuc.whosinline.windows;
 import edu.uiuc.whosinline.HomeActivity;
 import edu.uiuc.whosinline.R;
 import edu.uiuc.whosinline.data.Venue;
-import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -26,7 +26,7 @@ public class FavoriteWindow extends BaseWindow {
 	
 	private void AddRemoveFavorite() {
 		
-		DatabaseAccessObj dao = new DatabaseAccessObj(getActivity());
+		DatabaseAccessObjVenue dao = new DatabaseAccessObjVenue(getActivity());
 		dao.open();
 		
 		if (addToFavorite) {
@@ -59,7 +59,7 @@ public class FavoriteWindow extends BaseWindow {
 		
 		venue = getVenue(getArguments(), getActivity());
 		addToFavorite = true;
-		DatabaseAccessObj dao = new DatabaseAccessObj(getActivity());
+		DatabaseAccessObjVenue dao = new DatabaseAccessObjVenue(getActivity());
 		dao.open();
 		Venue temp = dao.getVenue(2, venue.getName());
 		if (temp != null) {

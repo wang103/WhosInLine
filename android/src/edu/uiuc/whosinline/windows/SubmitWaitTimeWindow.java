@@ -3,7 +3,7 @@ package edu.uiuc.whosinline.windows;
 import edu.uiuc.whosinline.HomeActivity;
 import edu.uiuc.whosinline.R;
 import edu.uiuc.whosinline.data.Venue;
-import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -23,7 +23,7 @@ public class SubmitWaitTimeWindow extends BaseWindow {
 	
 	private void submitWaitTime(int waitTimeMinutes, Venue venue) {
 		
-		DatabaseAccessObj dao = new DatabaseAccessObj(getActivity());
+		DatabaseAccessObjVenue dao = new DatabaseAccessObjVenue(getActivity());
 		dao.open();
 		
 		if (dao.getVenue(1, venue.getName()) == null) {

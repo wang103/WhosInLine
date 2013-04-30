@@ -2,7 +2,7 @@ package edu.uiuc.whosinline;
 
 import com.tjerkw.slideexpandable.library.SlideExpandableListAdapter;
 
-import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import edu.uiuc.whosinline.fragments.VenueItemAdapter;
 import edu.uiuc.whosinline.windows.ChatWindow;
 import edu.uiuc.whosinline.windows.FavoriteWindow;
@@ -76,7 +76,7 @@ public class SearchActivity extends ListActivity {
 		String query = bundle.getString(HomeActivity.INTENT_QUERY);
 
 		// Search the database and display the results.
-		DatabaseAccessObj dao = new DatabaseAccessObj(this);
+		DatabaseAccessObjVenue dao = new DatabaseAccessObjVenue(this);
 		dao.open();
 
 		Cursor cursor = dao.getSearchResults(tableNum, query);
@@ -95,7 +95,7 @@ public class SearchActivity extends ListActivity {
 		ListView lv = getListView();
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 
 		Intent intent = new Intent(this, VenueActivity.class);
 		Bundle extras = new Bundle();
@@ -109,7 +109,7 @@ public class SearchActivity extends ListActivity {
 		ListView lv = getListView();
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 
 		SubmitWaitTimeWindow windowFrag = new SubmitWaitTimeWindow();
 		Bundle extras = new Bundle();
@@ -128,7 +128,7 @@ public class SearchActivity extends ListActivity {
 		ListView lv = getListView();
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 
 		ChatWindow windowFrag = new ChatWindow();
 		Bundle extras = new Bundle();
@@ -143,7 +143,7 @@ public class SearchActivity extends ListActivity {
 		ListView lv = getListView();
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 
 		WriteReviewWindow windowFrag = new WriteReviewWindow();
 		Bundle extras = new Bundle();
@@ -162,7 +162,7 @@ public class SearchActivity extends ListActivity {
 		ListView lv = getListView();
 		int position = lv.getPositionForView(v);
 		SQLiteCursor cursor = (SQLiteCursor) lv.getItemAtPosition(position);
-		long venueID = DatabaseAccessObj.cursorToVenue(cursor).getId();
+		long venueID = DatabaseAccessObjVenue.cursorToVenue(cursor).getId();
 
 		FavoriteWindow windowFrag = new FavoriteWindow();
 		Bundle extras = new Bundle();

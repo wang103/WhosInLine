@@ -38,7 +38,7 @@ public class SQLiteHelperVenues extends SQLiteOpenHelper {
 	
 	private void onCreateHelper(SQLiteDatabase db, String tableName) {
 		// Database creation SQL statement.
-		String databaseCreateStat = "create table " + tableName + "(" 
+		String databaseCreateStat = "create table " + tableName + "("
 				+ COLUMN_ID + " integer primary key AUTOINCREMENT, "
 				+ COLUMN_VENUE_NAME + " tinytext not null, "
 				+ COLUMN_VENUE_IMAGE_PATH + " text not null, "

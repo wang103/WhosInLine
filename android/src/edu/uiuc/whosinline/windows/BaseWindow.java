@@ -2,7 +2,7 @@ package edu.uiuc.whosinline.windows;
 
 import edu.uiuc.whosinline.HomeActivity;
 import edu.uiuc.whosinline.data.Venue;
-import edu.uiuc.whosinline.database.DatabaseAccessObj;
+import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
@@ -18,7 +18,7 @@ public class BaseWindow extends android.app.DialogFragment {
 		long venueId = extras.getLong(HomeActivity.INTENT_VENUE_ID);
 
 		// Get the database object.
-		DatabaseAccessObj dbAccessObj = new DatabaseAccessObj(context);
+		DatabaseAccessObjVenue dbAccessObj = new DatabaseAccessObjVenue(context);
 		dbAccessObj.open();
 
 		// Get all the info about this venue.
