@@ -51,6 +51,10 @@ public class VenueActivity extends Activity {
 		dbAccessObjReview = new DatabaseAccessObjReview(this);
 		dbAccessObjReview.open();
 
+		if (dbAccessObjReview.getTableRowCount() == 0) {
+			insertTestReviewData();
+		}
+		
 		// Get all the info about this venue.
 		venue = dbAccessObjVenue.getVenue(tableNum, venueId);
 
@@ -62,13 +66,10 @@ public class VenueActivity extends Activity {
 		// Give the action bar a back button.
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		
-		if (dbAccessObjReview.getTableRowCount() == 0) {
-			insertTestReviewData();
-		}
 	}
 
 	private void setUI(Venue venue) {
+		
 		TextView venueInfoName = (TextView) findViewById(R.id.venue_info_name);
 		venueInfoName.setText(venue.getName());
 
@@ -82,7 +83,7 @@ public class VenueActivity extends Activity {
 		venueInfoRatingNumber.setText(venue.getRating() + "/5.0");
 
 		TextView venueInfoReviewNumber = (TextView) findViewById(R.id.venue_info_review_number);
-		venueInfoReviewNumber.setText("(10 reviews)");
+		venueInfoReviewNumber.setText("(" + dbAccessObjReview.getTableRowCountForVenue(venue.getName()) + " reviews)");
 
 		TextView venueInfoWait = (TextView) findViewById(R.id.venue_info_wait);
 		venueInfoWait.setText("Wait: " + venue.getWaitMinutes() + " minutes");

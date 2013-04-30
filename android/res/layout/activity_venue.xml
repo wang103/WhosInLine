@@ -1,14 +1,9 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".VenueActivity" >
-    
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
 	
     <!-- Venue Info -->
     
@@ -151,7 +146,7 @@
         android:id="@+id/ticker_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Today's Specials" 
+        android:text="@string/special_prompt"
         android:textSize="16sp"
         android:typeface="sans"
         android:paddingTop="10dp"
@@ -175,7 +170,7 @@
 	    	android:layout_height="wrap_content"
 	    	android:typeface="sans"
 	    	android:textSize="14sp"
-	    	android:text="Get free chips when you check-in with Who's in Line! Get free chips when you check-in with who's in line! Get a steak and chicken burrito for $7.00!" />
+	    	android:text="@string/special_content" />
 	</HorizontalScrollView>
 	
 	<View
@@ -195,7 +190,7 @@
    	    android:layout_marginTop="10dp"
    	    android:layout_marginLeft="6dp"
    	    android:layout_below="@id/venue_divider2"
-   	    android:text="Reviews"
+   	    android:text="@string/reviews"
    	    android:textSize="16sp"
    	    android:textStyle="bold" />
    	
@@ -204,6 +199,5 @@
     	android:layout_width="match_parent"
     	android:layout_below="@id/review_header"
    	    android:layout_height="wrap_content" />
-   	
+
 </RelativeLayout>
-</ScrollView>

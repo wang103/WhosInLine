@@ -42,6 +42,16 @@ public class DatabaseAccessObjReview {
 		return cursor.getInt(0);
 	}
 	
+	public int getTableRowCountForVenue(String venueName) {
+		String statement = "SELECT Count(*) FROM " +
+				SQLiteHelperReview.TABLE_NAME_REVIEW + " WHERE " + 
+				SQLiteHelperReview.COLUMN_REVIEW_VENUE_NAME + "=\"" +
+				venueName + "\"";
+		Cursor cursor = database.rawQuery(statement, null);
+		cursor.moveToFirst();
+		return cursor.getInt(0);
+	}
+	
 	public Cursor getReviewsForVenue(String venueName) {
 		String statement = "SELECT * FROM " + SQLiteHelperReview.TABLE_NAME_REVIEW
 				+ " WHERE " + SQLiteHelperReview.COLUMN_REVIEW_VENUE_NAME + "=\""

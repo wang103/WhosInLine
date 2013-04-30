@@ -4,5 +4,8 @@
     <string name="text_nearby_frag">This is nearby fragment. Search function will go here.</string>
     <string name="text_recent_frag">This is recent fragment.</string>
     <string name="text_favorite_frag">This is favorite fragment.</string>
-        
+    
+   	<string name="special_prompt">Today\'s Specials</string>
+	<string name="special_content">Get free chips when you check-in with Who\'s in Line! Get free chips when you check-in with who\'s in line! Get a steak and chicken burrito for $7.00!</string>
+	
 </resources>

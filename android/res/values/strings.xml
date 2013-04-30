@@ -11,5 +11,6 @@
     <string name="title_activity_search">SearchActivity</string>
     <string name="search_hint">Find a Venue</string>
     <string name="title_activity_settings">SettingsActivity</string>
-
+    <string name="reviews">Reviews</string>
+    
 </resources>
