@@ -21,7 +21,7 @@ public class NearbyFragment extends BaseFragment {
 		Venue venue;
 		
 		venue = new Venue(0, "Cravings Restaurant", "", R.drawable.ic_type_asian,
-				"Restaurant", 4.0f, 0.15f, 15,
+				"Restaurant", 4.5f, 0.15f, 15,
 				"603 S Wright St, Champaign, IL", "(111) 111-1111", hs);
 		dbAccessObj.insertVenue(tableNum, venue);
 		

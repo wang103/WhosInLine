@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.uiuc.whosinline.database.DatabaseAccessObjReview;
 import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
+import edu.uiuc.whosinline.data.Review;
 import edu.uiuc.whosinline.data.Venue;
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -18,9 +20,20 @@ import android.widget.TextView;
 
 public class VenueActivity extends Activity {
 
-	private DatabaseAccessObjVenue dbAccessObj;
+	private DatabaseAccessObjVenue dbAccessObjVenue;
+	private DatabaseAccessObjReview dbAccessObjReview;
 	private Venue venue;
 
+	private void insertTestReviewData() {
+		Review review;
+		
+		review = new Review(0, "Cravings Restaurant", "Good", "Yes, yes, yes! These people aren't goofing around! Although this restaurant is lacking in atmosphere, this is fully made up for in quality and quantity of food. It is by far the best tasting Chinese I have had on campus, for a bargain deal too! Bang for your buck, get some takeout and give it  a try.", 5.0f, "Daniel R.");
+		dbAccessObjReview.insertReview(review);
+		
+		review = new Review(0, "Cravings Restaurant", "Great", "Cravings really caters to poor college students--the prices are cheap and the portions are decently sized. And it also helps that the food is actually good here.", 4.0f, "Connie L.");
+		dbAccessObjReview.insertReview(review);
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,11 +45,14 @@ public class VenueActivity extends Activity {
 		long venueId = extras.getLong(HomeActivity.INTENT_VENUE_ID);
 
 		// Get the database object.
-		dbAccessObj = new DatabaseAccessObjVenue(this);
-		dbAccessObj.open();
+		dbAccessObjVenue = new DatabaseAccessObjVenue(this);
+		dbAccessObjVenue.open();
+		
+		dbAccessObjReview = new DatabaseAccessObjReview(this);
+		dbAccessObjReview.open();
 
 		// Get all the info about this venue.
-		venue = dbAccessObj.getVenue(tableNum, venueId);
+		venue = dbAccessObjVenue.getVenue(tableNum, venueId);
 
 		// Set the name of the venue as the title of the action bar.
 		setTitle(venue.getName());
@@ -46,6 +62,10 @@ public class VenueActivity extends Activity {
 		// Give the action bar a back button.
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		
+		if (dbAccessObjReview.getTableRowCount() == 0) {
+			insertTestReviewData();
+		}
 	}
 
 	private void setUI(Venue venue) {
@@ -123,13 +143,15 @@ public class VenueActivity extends Activity {
 
 	@Override
 	public void onResume() {
-		dbAccessObj.open();
+		dbAccessObjVenue.open();
+		dbAccessObjReview.open();
 		super.onResume();
 	}
 
 	@Override
 	public void onPause() {
-		dbAccessObj.close();
+		dbAccessObjVenue.close();
+		dbAccessObjReview.close();
 		super.onPause();
 	}
 }
