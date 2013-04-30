@@ -56,6 +56,7 @@ public class HomeActivity extends FragmentActivity {
 	final static public String TAG_CHAT_WINDOW = "chat";
 	final static public String TAG_WRITE_REVIEW_WINDOW = "write_review";
 	final static public String TAG_FAVORITE_WINDOW = "favorite";
+	final static public String TAG_REQUEST_WINDOW = "request";
 	
 	final static public int RESULT_REFRESH = 0;
 	final static public int RESULT_SETTINGS = 1;

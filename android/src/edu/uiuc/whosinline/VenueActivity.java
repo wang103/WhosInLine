@@ -24,6 +24,7 @@ public class VenueActivity extends Activity {
 	private DatabaseAccessObjVenue dbAccessObjVenue;
 	private DatabaseAccessObjReview dbAccessObjReview;
 	private Venue venue;
+	private int tableNum;
 
 	private void insertTestReviewData() {
 		Review review;
@@ -42,7 +43,7 @@ public class VenueActivity extends Activity {
 
 		// Get content from intent.
 		Bundle extras = getIntent().getExtras();
-		int tableNum = extras.getInt(HomeActivity.INTENT_TABLE_NUM);
+		tableNum = extras.getInt(HomeActivity.INTENT_TABLE_NUM);
 		long venueId = extras.getLong(HomeActivity.INTENT_VENUE_ID);
 
 		// Get the database object.
@@ -125,7 +126,7 @@ public class VenueActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.venue, menu);
 		
-		MenuItemListener mil = new MenuItemListener(this);
+		MenuItemListener mil = new MenuItemListener(this, venue, tableNum);
 		menu.findItem(R.id.venue_submit_wait).setOnMenuItemClickListener(mil);
 		menu.findItem(R.id.venue_chat).setOnMenuItemClickListener(mil);
 		menu.findItem(R.id.venue_review).setOnMenuItemClickListener(mil);
