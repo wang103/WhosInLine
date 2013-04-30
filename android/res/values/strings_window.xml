@@ -10,8 +10,10 @@
     <string name="str_prompt_wait">How long have you waited at</string>
     <string name="str_prompt_chat_venue">You are currently chatting with people at</string>
     <string name="str_prompt_review">Review for</string>
+    <string name="str_prompt_request">Submit request to</string>
     
     <string name="hint_title">Title</string>
     <string name="hint_content">Content</string>
+    <string name="hint_request">Request</string>
     
 </resources>

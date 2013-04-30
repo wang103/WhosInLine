@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="request_type_array">
+        <item>Music</item>
+        <item>TV</item>
+        <item>Food</item>
+        <item>Service</item>
+        <item>Events</item>
+        <item>Other</item>
+    </string-array>
+</resources>

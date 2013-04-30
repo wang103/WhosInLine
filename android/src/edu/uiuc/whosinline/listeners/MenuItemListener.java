@@ -6,6 +6,7 @@ import edu.uiuc.whosinline.data.Venue;
 import edu.uiuc.whosinline.windows.BaseWindow;
 import edu.uiuc.whosinline.windows.ChatWindow;
 import edu.uiuc.whosinline.windows.FavoriteWindow;
+import edu.uiuc.whosinline.windows.SubmitRequestWindow;
 import edu.uiuc.whosinline.windows.SubmitWaitTimeWindow;
 import edu.uiuc.whosinline.windows.WriteReviewWindow;
 import android.app.Activity;
@@ -72,7 +73,9 @@ public class MenuItemListener implements OnMenuItemClickListener {
 			break;
 			
 		case R.id.venue_request:
-			
+			windowFrag = new SubmitRequestWindow();
+			extras.putInt(HomeActivity.INTENT_TABLE_NUM, tableNum);
+			extras.putLong(HomeActivity.INTENT_VENUE_ID, venue.getId());
 			tag = HomeActivity.TAG_REQUEST_WINDOW;
 			break;
 			
