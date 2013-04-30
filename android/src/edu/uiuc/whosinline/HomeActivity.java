@@ -103,6 +103,7 @@ public class HomeActivity extends FragmentActivity {
 		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 		searchView.setOnQueryTextListener(new SearchQueryListener(this, viewPager, fragmentManager));
+		
 		return true;
 	}
 

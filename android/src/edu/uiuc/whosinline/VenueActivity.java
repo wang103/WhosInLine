@@ -8,6 +8,7 @@ import edu.uiuc.whosinline.database.DatabaseAccessObjReview;
 import edu.uiuc.whosinline.database.DatabaseAccessObjVenue;
 import edu.uiuc.whosinline.data.Review;
 import edu.uiuc.whosinline.data.Venue;
+import edu.uiuc.whosinline.listeners.MenuItemListener;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -123,6 +124,14 @@ public class VenueActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.venue, menu);
+		
+		MenuItemListener mil = new MenuItemListener(this);
+		menu.findItem(R.id.venue_submit_wait).setOnMenuItemClickListener(mil);
+		menu.findItem(R.id.venue_chat).setOnMenuItemClickListener(mil);
+		menu.findItem(R.id.venue_review).setOnMenuItemClickListener(mil);
+		menu.findItem(R.id.venue_favorite).setOnMenuItemClickListener(mil);
+		menu.findItem(R.id.venue_request).setOnMenuItemClickListener(mil);
+		
 		return true;
 	}
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+<TextView
+	android:id="@+id/chat_prompt_textview"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/str_prompt_chat_venue"
+	android:maxLines="2"
+	android:gravity="center"
+	android:layout_alignParentTop="true"
+	android:layout_centerHorizontal="true" />
+
+<TextView
+	android:id="@+id/venue_name_textview"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@+id/chat_prompt_textview"
+	android:layout_centerHorizontal="true" />
+
+<TextView
+	android:id="@+id/chat_textview"
+	android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:ellipsize="end"
+	android:lines="8"
+	android:maxLines="8"
+	android:scrollbars="vertical"
+	android:layout_below="@+id/venue_name_textview"
+	android:layout_alignParentLeft="true" />
+
+<EditText
+	android:id="@+id/chat_edittext"
+	android:inputType="text"
+	android:layout_width="220dp"
+	android:layout_height="wrap_content"
+	android:textSize="18sp"
+	android:layout_below="@+id/chat_textview"
+	android:layout_alignParentLeft="true" />
+
+<Button
+	android:id="@+id/chat_send_button"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="@string/button_send"
+	android:layout_alignBaseline="@+id/chat_edittext"
+	android:layout_alignParentRight="true" />
+
+</RelativeLayout>

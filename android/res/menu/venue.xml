@@ -1,6 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     	
     <item
+        android:id="@+id/venue_submit_wait"
+        android:showAsAction="always"
+        android:title="Submit Wait"
+    	android:icon="@drawable/ic_menu_wait"/>
+    
+    <item
         android:id="@+id/venue_chat"
         android:showAsAction="always"
         android:title="Chat"
@@ -20,21 +26,12 @@
     
     <item
         android:id="@+id/venue_request"
-        android:showAsAction="never"
+        android:showAsAction="always"
         android:title="Submit Request"
-        android:icon="@drawable/ic_menu_request"
-        android:orderInCategory="2" />
-    
-     <item
-        android:id="@+id/venue_submit_wait"
-        android:showAsAction="never"
-        android:title="Submit Wait"
-        android:orderInCategory="1"
-    	android:icon="@drawable/ic_menu_wait"/>
+        android:icon="@drawable/ic_menu_request" />
         	
     <item
         android:id="@+id/venue_settings"
-        android:orderInCategory="3"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
 
