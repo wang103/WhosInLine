@@ -10,14 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:textSize="14sp" >
+        android:textSize="16sp"
+        android:typeface="sans"
+        android:textStyle="bold" >
     </TextView>
     
     <TextView
         android:id="@+id/row_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:textSize="14sp" >
     </TextView>
     
@@ -27,6 +29,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:isIndicator="true"
+		android:layout_marginTop="3dp"
         android:numStars="5"
         android:stepSize="0.5" />
 
@@ -35,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:textSize="12sp" >
     </TextView>
     
